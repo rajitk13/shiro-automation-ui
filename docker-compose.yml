@@ -1,11 +1,6 @@
 services:
   shiro-automation-ui:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     ports:
       - "3222:3222"
-    environment:
-      - NODE_ENV=production
-      - NEXT_TELEMETRY_DISABLED=1
     restart: unless-stopped
