@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+if [ -f "$HOME/.nvm/nvm.sh" ]; then
+  . "$HOME/.nvm/nvm.sh"
+  nvm use 2>/dev/null || true
+fi
+npx lint-staged
