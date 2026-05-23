@@ -5,7 +5,8 @@ import { useEffect } from "react";
 function playChime() {
   try {
     const ctx = new AudioContext();
-    const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 — pleasant major chord
+    // Classic MacBook startup chime: F#3, A3, C#4, F#4
+    const notes = [185.0, 220.0, 277.2, 369.99];
     notes.forEach((freq, i) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
@@ -13,12 +14,13 @@ function playChime() {
       gain.connect(ctx.destination);
       osc.type = "sine";
       osc.frequency.value = freq;
-      const t = ctx.currentTime + i * 0.15;
+      const t = ctx.currentTime + i * 0.08;
+      // Swell in then decay - classic Mac bell envelope
       gain.gain.setValueAtTime(0, t);
-      gain.gain.linearRampToValueAtTime(0.08, t + 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.9);
+      gain.gain.linearRampToValueAtTime(0.12, t + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
       osc.start(t);
-      osc.stop(t + 0.9);
+      osc.stop(t + 1.2);
     });
   } catch {
     // AudioContext blocked or unavailable — silent fail

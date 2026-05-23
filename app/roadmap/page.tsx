@@ -1,304 +1,161 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { FadeUp, StaggerGroup, StaggerItem } from "@/components/Animate";
+
+const currentFeatures = [
+  { icon: "⚡", title: "Core Runtime", items: ["DAG-based workflow execution", "Built-in modules (print, slack, git, AI)", "Subprocess module support", "Variable resolution", "State storage backends"] },
+  { icon: "🦊", title: "CI Integration", items: ["GitLab CI native support", "GitHub Actions integration", "Human-in-loop approvals", "Manual job resumption", "Artifact-based state storage"] },
+  { icon: "🤖", title: "AI Capabilities", items: ["Ollama local models", "OpenAI integration", "Custom OpenAI-compatible endpoints", "Environment variable resolution"] },
+  { icon: "🛠️", title: "Developer Experience", items: ["Simplified CLI commands", "Auto-detection of configs", "Module auto-discovery", "GitHub marketplace integration"] },
+];
+
+const planned = [
+  { icon: "🎨", title: "Visual Workflow Builder", badge: "Future", badgeVariant: "secondary" as const, desc: "Drag-and-drop node-based editor with real-time validation, visual DAG representation, and export/import of workflow.json.", dot: "bg-slate-400" },
+  { icon: "📦", title: "Enhanced Module Registry", badge: "In Progress", badgeVariant: "default" as const, desc: "Centralized registry with module ratings, version management, security scanning, and dependency resolution.", dot: "bg-primary" },
+  { icon: "🔀", title: "Additional CI Platforms", badge: "Planned", badgeVariant: "outline" as const, desc: "CircleCI, Azure Pipelines, Bitbucket Pipelines, AWS CodeBuild, and Google Cloud Build support.", dot: "bg-slate-400" },
+  { icon: "🤖", title: "Advanced AI Features", badge: "Planned", badgeVariant: "outline" as const, desc: "Multi-step AI chains, natural language to workflow conversion, AI-powered debugging and suggestions.", dot: "bg-slate-400" },
+  { icon: "🏢", title: "Enterprise Features", badge: "Planned", badgeVariant: "outline" as const, desc: "RBAC and permissions, audit logging, SSO integration, self-hosted module registry, enterprise support plans.", dot: "bg-slate-400" },
+];
 
 export default function RoadmapPage() {
   return (
-    <div className="container mx-auto px-4 py-20 max-w-6xl">
-      <div className="space-y-12">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold">Roadmap</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+    <div className="container mx-auto px-6 py-20 max-w-6xl">
+      <div className="space-y-20">
+
+        {/* Hero */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center space-y-5"
+        >
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
+            <Badge variant="secondary" className="mb-2 text-sm px-3 py-1">What&apos;s Next</Badge>
+          </motion.div>
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight gradient-text">Roadmap</h1>
+          <motion.p
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
+            className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+          >
             Future plans and development roadmap for Shiro Automation.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Current Features */}
         <section>
-          <h2 className="text-3xl font-bold mb-6">Current Features</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle>✅ Available Now</CardTitle>
-              <CardDescription>
-                Features that are already implemented and stable
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <h3 className="font-semibold">Core Functionality</h3>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• DAG-based workflow execution</li>
-                    <li>• Built-in modules (print, slack, git, AI)</li>
-                    <li>• Subprocess module support</li>
-                    <li>• Variable resolution</li>
-                    <li>• State storage backends</li>
-                  </ul>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-semibold">CI Integration</h3>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• GitLab CI native support</li>
-                    <li>• GitHub Actions integration</li>
-                    <li>• Human-in-loop approvals</li>
-                    <li>• Manual job resumption</li>
-                    <li>• Artifact-based state storage</li>
-                  </ul>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-semibold">AI Capabilities</h3>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Ollama local models</li>
-                    <li>• OpenAI integration</li>
-                    <li>• Custom OpenAI-compatible endpoints</li>
-                    <li>• Environment variable resolution</li>
-                  </ul>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-semibold">Developer Experience</h3>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Simplified CLI commands</li>
-                    <li>• Auto-detection of configs</li>
-                    <li>• Module auto-discovery</li>
-                    <li>• GitHub marketplace integration</li>
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <FadeUp>
+            <div className="flex items-center gap-3 mb-8">
+              <h2 className="text-3xl font-bold">Available Now</h2>
+              <Badge className="text-sm">Stable</Badge>
+            </div>
+          </FadeUp>
+          <StaggerGroup className="grid md:grid-cols-2 gap-5">
+            {currentFeatures.map((f) => (
+              <StaggerItem key={f.title}>
+                <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{f.icon}</span>
+                      <CardTitle className="text-lg">{f.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="text-sm text-muted-foreground space-y-1.5">
+                      {f.items.map((item) => (
+                        <li key={item} className="flex items-center gap-2">
+                          <span className="text-emerald-500 text-xs">✓</span> {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </section>
 
         <Separator />
 
-        {/* Planned Features */}
+        {/* Planned Features — animated timeline */}
         <section>
-          <h2 className="text-3xl font-bold mb-6">Planned Features</h2>
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <CardTitle>Visual Workflow Builder</CardTitle>
-                  <Badge variant="secondary">Future</Badge>
+          <FadeUp>
+            <h2 className="text-3xl font-bold mb-8">Planned Features</h2>
+          </FadeUp>
+          <div className="relative pl-12">
+            <motion.div
+              className="absolute left-[15px] top-4 bottom-4 w-px bg-gradient-to-b from-primary via-sky-500 to-slate-400"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4, ease: "easeInOut" }}
+              style={{ originY: 0 }}
+            />
+            {planned.map((item, i) => (
+              <motion.div
+                key={item.title}
+                className="relative mb-6"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className={`absolute -left-12 z-10 w-8 h-8 rounded-full ${item.dot} flex items-center justify-center text-lg shadow-lg border-2 border-background`}>
+                  {item.icon}
                 </div>
-                <CardDescription>
-                  Drag-and-drop interface for creating workflows
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  A web-based visual editor for creating and editing workflow.json files. Features include:
-                </p>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Drag-and-drop node-based editor</li>
-                  <li>• Real-time validation</li>
-                  <li>• Visual DAG representation</li>
-                  <li>• Export/import workflow.json</li>
-                  <li>• Module library integration</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <CardTitle>Enhanced Module Registry</CardTitle>
-                  <Badge variant="secondary">In Progress</Badge>
-                </div>
-                <CardDescription>
-                  Centralized module marketplace with ratings and reviews
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Building a centralized registry for Shiro modules with improved discovery and management:
-                </p>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Module ratings and reviews</li>
-                  <li>• Version management</li>
-                  <li>• Security scanning</li>
-                  <li>• Dependency management</li>
-                  <li>• Usage analytics</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <CardTitle>Additional CI Platform Support</CardTitle>
-                  <Badge variant="outline">Planned</Badge>
-                </div>
-                <CardDescription>
-                  Support for more CI/CD platforms
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• CircleCI integration</li>
-                  <li>• Azure Pipelines support</li>
-                  <li>• Bitbucket Pipelines</li>
-                  <li>• AWS CodeBuild</li>
-                  <li>• Google Cloud Build</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <CardTitle>Advanced AI Features</CardTitle>
-                  <Badge variant="outline">Planned</Badge>
-                </div>
-                <CardDescription>
-                  Enhanced AI-powered workflow capabilities
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Multi-step AI chains</li>
-                  <li>• AI-powered workflow generation</li>
-                  <li>• Natural language to workflow conversion</li>
-                  <li>• AI-powered debugging and suggestions</li>
-                  <li>• Custom fine-tuned models for CI/CD</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <CardTitle>Enterprise Features</CardTitle>
-                  <Badge variant="outline">Planned</Badge>
-                </div>
-                <CardDescription>
-                  Features for enterprise deployments
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• RBAC and permissions</li>
-                  <li>• Audit logging</li>
-                  <li>• SSO integration</li>
-                  <li>• Self-hosted module registry</li>
-                  <li>• Enterprise support plans</li>
-                </ul>
-              </CardContent>
-            </Card>
+                <Card className="border-border/60 hover:border-primary/40 transition-colors duration-200">
+                  <CardHeader>
+                    <div className="flex items-center justify-between gap-2">
+                      <CardTitle className="text-lg">{item.title}</CardTitle>
+                      <Badge variant={item.badgeVariant} className="shrink-0">{item.badge}</Badge>
+                    </div>
+                    <CardDescription>{item.desc}</CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </section>
 
         <Separator />
 
-        {/* Community Contributions */}
+        {/* Community */}
         <section>
-          <h2 className="text-3xl font-bold mb-6">Community Contributions</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle>How to Contribute</CardTitle>
-              <CardDescription>
-                Join the community and help shape Shiro&apos;s future
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-2">Build Modules</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Create custom modules for your favorite tools and services. Share them with the community by adding the <code className="bg-muted px-1 rounded">shiro-automation-module</code> topic to your GitHub repository.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Report Issues</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Found a bug or have a feature request? Open an issue on GitHub to help us improve Shiro.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Submit PRs</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Contribute code, documentation, or tests. We welcome all contributions that improve Shiro.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Spread the Word</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Share Shiro with your team and community. More users mean more feedback and better features.
-                  </p>
-                </div>
-              </div>
-              <Separator />
-              <div className="flex gap-4">
-                <a
-                  href="https://github.com/rajitk13/shiro-automation/issues"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-primary hover:underline"
-                >
-                  Report an Issue →
-                </a>
-                <a
-                  href="https://github.com/rajitk13/shiro-automation/pulls"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-primary hover:underline"
-                >
-                  Submit a PR →
-                </a>
-                <a
-                  href="https://github.com/rajitk13/shiro-automation/discussions"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-primary hover:underline"
-                >
-                  Start a Discussion →
-                </a>
-              </div>
-            </CardContent>
-          </Card>
+          <FadeUp>
+            <h2 className="text-3xl font-bold mb-8">Community Contributions</h2>
+          </FadeUp>
+          <StaggerGroup className="grid md:grid-cols-2 gap-5">
+            {[
+              { icon: "🧩", title: "Build Modules", desc: "Create custom modules for your favorite tools. Add the shiro-automation-module topic to your GitHub repo to appear in the marketplace." },
+              { icon: "🐛", title: "Report Issues", desc: "Found a bug or have a feature request? Open an issue on GitHub to help improve Shiro.", href: "https://github.com/rajitk13/shiro-automation/issues" },
+              { icon: "🔀", title: "Submit PRs", desc: "Contribute code, documentation, or tests. All contributions that improve Shiro are welcome.", href: "https://github.com/rajitk13/shiro-automation/pulls" },
+              { icon: "💬", title: "Start a Discussion", desc: "Share ideas, ask questions, or discuss Shiro's future with the community.", href: "https://github.com/rajitk13/shiro-automation/discussions" },
+            ].map((item) => (
+              <StaggerItem key={item.title}>
+                <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{item.icon}</span>
+                      <CardTitle className="text-lg">{item.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                    {item.href && (
+                      <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline mt-3 inline-block">
+                        Open on GitHub →
+                      </a>
+                    )}
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </section>
 
-        {/* Timeline */}
-        <section>
-          <h2 className="text-3xl font-bold mb-6">Timeline</h2>
-          <div className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Q2 2024</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Enhanced module registry</li>
-                  <li>• Additional CI platform support</li>
-                  <li>• Improved documentation</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Q3 2024</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Visual workflow builder (alpha)</li>
-                  <li>• Advanced AI features</li>
-                  <li>• Performance optimizations</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Q4 2024</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Visual workflow builder (beta)</li>
-                  <li>• Enterprise features (alpha)</li>
-                  <li>• Community module marketplace</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
       </div>
     </div>
   );

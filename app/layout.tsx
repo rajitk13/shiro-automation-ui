@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Logo } from "@/components/Logo";
 import { ChimeEffect } from "@/components/ChimeEffect";
+import { DynamicTheme } from "@/components/DynamicTheme";
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -77,6 +78,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider>
           <ChimeEffect />
+          <DynamicTheme />
           <nav className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl">
             <div className="container mx-auto px-6 py-3">
               <div className="flex items-center justify-between">
@@ -95,6 +97,7 @@ export default function RootLayout({
                     ["Get Started", "/getting-started"],
                     ["Tech Stack", "/tech-stack"],
                     ["Modules", "/modules"],
+                    ["Integrations", "/integrations"],
                     ["Examples", "/examples"],
                     ["Roadmap", "/roadmap"],
                   ].map(([label, href]) => (
@@ -127,7 +130,7 @@ export default function RootLayout({
                 <div className="flex items-center gap-3">
                   <Logo size={24} />
                   <span className="text-sm text-muted-foreground">
-                    © 2026 Shiro Automation. Open source, MIT license.
+                    © 2026 Shiro Automation. Apache 2.0 license.
                   </span>
                 </div>
                 <div className="flex items-center gap-5">

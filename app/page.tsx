@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeUp, FadeIn, StaggerGroup, StaggerItem, GlowCard } from "@/components/Animate";
+import { TerminalAnimation } from "@/components/TerminalAnimation";
 
 const features = [
-  { icon: "⚡", title: "Blazing Fast", desc: "Go-compiled binary executes workflows in milliseconds. Zero runtime overhead, no JVM, no interpreter." },
+  { icon: "⚡", title: "Zero Infrastructure", desc: "Runs inside your existing CI runners — GitLab, GitHub Actions, Jenkins, Kubernetes. No new servers, no SaaS, no lock-in." },
+  { icon: "📦", title: "Single Binary", desc: "Drop one 10MB file anywhere. No dependencies, no JVM, no container orchestration. Works where you already have a runner." },
   { icon: "🤖", title: "AI-Native", desc: "First-class Ollama, OpenAI, and custom endpoint support. Intelligent automation baked in, not bolted on." },
-  { icon: "📦", title: "Single Binary", desc: "Drop one file anywhere — GitLab, GitHub Actions, Jenkins, Kubernetes. No infra changes needed." },
   { icon: "🔀", title: "DAG Execution", desc: "Topological sorting with intelligent dependency resolution. Parallel execution when steps allow it." },
   { icon: "🧩", title: "Module System", desc: "Pluggable architecture with GitHub marketplace. Discover and install community modules in one command." },
   { icon: "🔁", title: "Human-in-Loop", desc: "Pause workflows and require manual approval via GitLab manual jobs. Resume exactly where you left off." },
@@ -24,55 +25,62 @@ export default function Home() {
   return (
     <div className="flex flex-col overflow-hidden">
       {/* Hero */}
-      <section className="relative py-28 px-6 overflow-hidden">
-        {/* Background decoration */}
+      <section className="relative py-24 px-6 overflow-hidden">
         <div className="absolute inset-0 dot-bg opacity-40" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-20 right-20 w-72 h-72 bg-violet-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="container mx-auto max-w-5xl relative z-10 text-center">
-          <FadeIn delay={0.05}>
-            <Badge className="mb-6 px-4 py-1.5 text-sm font-medium">
-              🚀 AI-Native CI/CD Workflow Runtime
-            </Badge>
-          </FadeIn>
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
 
-          <FadeUp delay={0.15}>
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 leading-none">
-              <span className="gradient-text">Shiro</span>
-              <br />
-              <span className="text-foreground/80 text-4xl md:text-5xl lg:text-6xl font-semibold mt-2 block">
-                Automation
-              </span>
-            </h1>
-          </FadeUp>
-
-          <FadeUp delay={0.25}>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-              A portable workflow orchestration runtime built with <strong className="text-foreground">Go</strong> for blazing-fast CI/CD. AI-native, module-driven, human-in-loop — ready for production.
-            </p>
-          </FadeUp>
-
-          <FadeUp delay={0.35}>
-            <div className="flex flex-wrap gap-4 justify-center mb-12">
-              <Button size="lg" className="px-8 h-12 text-base shadow-lg shadow-primary/25" asChild>
-                <Link href="/getting-started">Get Started →</Link>
-              </Button>
-              <Button size="lg" variant="outline" className="px-8 h-12 text-base" asChild>
-                <a href="https://github.com/rajitk13/shiro-automation" target="_blank" rel="noopener noreferrer">
-                  View on GitHub
-                </a>
-              </Button>
+            {/* Left: text */}
+            <div>
+              <FadeIn delay={0.05}>
+                <Badge className="mb-6 px-4 py-1.5 text-sm font-medium">
+                  🚀 AI-Native CI/CD Workflow Runtime
+                </Badge>
+              </FadeIn>
+              <FadeUp delay={0.15}>
+                <h1 className="text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
+                  <span className="gradient-text">Shiro</span>
+                  <br />
+                  <span className="text-foreground/80 text-4xl md:text-5xl font-semibold mt-2 block">
+                    Automation
+                  </span>
+                </h1>
+              </FadeUp>
+              <FadeUp delay={0.25}>
+                <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
+                  A portable workflow orchestration runtime built with{" "}
+                  <strong className="text-foreground">Go</strong> for blazing-fast CI/CD.
+                  AI-native, module-driven, human-in-loop — ready for production.
+                </p>
+              </FadeUp>
+              <FadeUp delay={0.35}>
+                <div className="flex flex-wrap gap-4 mb-8">
+                  <Button size="lg" className="px-8 h-12 text-base shadow-lg shadow-primary/25" asChild>
+                    <Link href="/getting-started">Get Started →</Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="px-8 h-12 text-base" asChild>
+                    <a href="https://github.com/rajitk13/shiro-automation" target="_blank" rel="noopener noreferrer">
+                      View on GitHub
+                    </a>
+                  </Button>
+                </div>
+              </FadeUp>
+              <FadeUp delay={0.42}>
+                <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-lg border border-border bg-muted/50 font-mono text-xs text-muted-foreground">
+                  <span className="text-primary">$</span>
+                  <span>curl -sSL .../install.sh | bash</span>
+                </div>
+              </FadeUp>
             </div>
-          </FadeUp>
 
-          {/* Quick install */}
-          <FadeUp delay={0.45}>
-            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl border border-border bg-muted/50 font-mono text-sm text-muted-foreground">
-              <span className="text-primary">$</span>
-              <span>curl -sSL https://shiro-automation.rajit.cc/install.sh | bash</span>
-            </div>
-          </FadeUp>
+            {/* Right: live terminal */}
+            <FadeUp delay={0.2}>
+              <TerminalAnimation />
+            </FadeUp>
+
+          </div>
         </div>
       </section>
 
@@ -97,9 +105,9 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Why engineers choose Shiro</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Built for the modern CI/CD stack with AI-first capabilities and Go&apos;s performance.
+              <h2 className="text-4xl font-bold mb-4">Why to choose this</h2>
+              <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
+                Shiro is the only AI-native workflow runtime that runs inside your existing CI pipeline — no new infrastructure, no always-on servers, just a single binary.
               </p>
             </div>
           </FadeUp>
@@ -178,7 +186,7 @@ export default function Home() {
         <FadeUp>
           <div className="container mx-auto max-w-4xl">
             <div className="relative rounded-2xl border border-primary/30 bg-primary/5 p-12 text-center overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-violet-500/10 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 pointer-events-none" />
               <h2 className="text-4xl font-bold mb-4 relative z-10">Start automating today</h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto relative z-10">
                 Production-ready in minutes. No credit card, no SaaS lock-in — just a Go binary.

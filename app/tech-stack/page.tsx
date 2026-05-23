@@ -1,283 +1,243 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+"use client";
+
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { FadeUp, StaggerGroup, StaggerItem } from "@/components/Animate";
+
+const goReasons = [
+  { icon: "⚡", title: "Blazing Fast", desc: "Compiled binary executes workflows in milliseconds. Zero interpreter overhead, no JVM, no startup delay." },
+  { icon: "📦", title: "Single Binary", desc: "Compile to a static binary with zero dependencies. Drop it anywhere — CI runner, container, or bare metal." },
+  { icon: "🔀", title: "Built-in Concurrency", desc: "Goroutines and channels enable efficient parallel DAG execution without complex threading primitives." },
+  { icon: "🌍", title: "Cross-Platform", desc: "One codebase compiles for Linux, macOS, Windows — AMD64 and ARM64. No environment-specific builds." },
+];
+
+const moduleTypes = [
+  { icon: "📦", title: "Built-in Modules", badge: "Zero deps", desc: "Core functionality compiled into the binary: print, slack.notify, git.diff, ai.generate — always available." },
+  { icon: "🔌", title: "Subprocess Modules", badge: "Extensible", desc: "External programs communicating via JSON over stdin/stdout. Binary mode or go-run mode." },
+  { icon: "🌐", title: "HTTP Modules", badge: "Distributed", desc: "RESTful API endpoints with load balancing, health checks, and circuit breakers." },
+  { icon: "🐙", title: "GitHub Integration", badge: "Marketplace", desc: "Auto-discover and install modules from GitHub repositories tagged shiro-automation-module." },
+];
+
+const aiProviders = [
+  { icon: "🧠", title: "Ollama", badge: "Local / Private", desc: "Run Llama, Mistral, and more on your own hardware. Full privacy, zero cloud dependency." },
+  { icon: "✨", title: "OpenAI", badge: "GPT-4 / GPT-4o", desc: "Production-grade AI with enterprise reliability. GPT-4 and latest OpenAI models supported." },
+  { icon: "🔧", title: "Custom Endpoint", badge: "Bring your own", desc: "Any OpenAI-compatible API: vLLM, LM Studio, custom deployments — same config syntax." },
+];
+
+const ciPlatforms = [
+  { icon: "🦊", title: "GitLab CI", badge: "Recommended", desc: "Native artifact state storage, human-in-loop approvals via manual jobs, and pipeline resumption." },
+  { icon: "🐙", title: "GitHub Actions", badge: "Supported", desc: "Full integration for PR reviews, push notifications, and workflow automation." },
+  { icon: "🛠️", title: "Jenkins", badge: "Supported", desc: "Compatible as a build step or shell command in any Jenkinsfile pipeline." },
+  { icon: "☁️", title: "Kubernetes Jobs", badge: "Cloud-native", desc: "Run as K8s Jobs for cloud-native CI/CD with container isolation and horizontal scalability." },
+];
+
+const stateBackends = [
+  { icon: "🗂️", title: "GitLab Artifacts", badge: "CI default", desc: "Automatically uploads workflow state to GitLab CI artifacts. Downloaded between stages — no external infra." },
+  { icon: "💾", title: "Filesystem", badge: "Local dev", desc: "Stores state in the local filesystem. Simple and reliable for local development and testing." },
+  { icon: "⚡", title: "Memory", badge: "Fastest", desc: "In-memory storage for ephemeral workflows. Maximum speed, zero persistence." },
+];
 
 export default function TechStackPage() {
   return (
-    <div className="container mx-auto px-4 py-20 max-w-6xl">
-      <div className="space-y-12">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold">Tech Stack</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Understanding the technology behind Shiro&apos;s performance and capabilities.
-          </p>
-        </div>
+    <div className="container mx-auto px-6 py-20 max-w-6xl">
+      <div className="space-y-20">
 
-        {/* GoLang */}
+        {/* Hero */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center space-y-5"
+        >
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
+            <Badge variant="secondary" className="mb-2 text-sm px-3 py-1">Under the Hood</Badge>
+          </motion.div>
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight gradient-text">Tech Stack</h1>
+          <motion.p
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
+            className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+          >
+            Understanding the technology behind Shiro&apos;s performance and capabilities.
+          </motion.p>
+        </motion.div>
+
+        {/* Stats bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 px-8 rounded-2xl border border-border/60 bg-muted/20"
+        >
+          {[
+            { value: "<100ms", label: "Startup time" },
+            { value: "~10MB",  label: "Binary size" },
+            { value: "0",      label: "Dependencies" },
+            { value: "3+",     label: "AI providers" },
+          ].map(({ value, label }) => (
+            <div key={label} className="text-center">
+              <div className="text-4xl font-bold text-primary">{value}</div>
+              <div className="text-sm text-muted-foreground mt-1">{label}</div>
+            </div>
+          ))}
+        </motion.div>
+
+        <Separator />
+
+        {/* Why Go */}
         <section>
-          <h2 className="text-3xl font-bold mb-6">Why GoLang?</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle>Performance-First Architecture</CardTitle>
-              <CardDescription>
-                Built with Go for maximum performance and efficiency
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-2">Blazing Fast Execution</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Go&apos;s compiled nature and efficient garbage collector enable Shiro to execute workflows in milliseconds, not seconds.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Single Binary Deployment</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Compile to a single static binary with no dependencies. Easy to distribute and deploy across platforms.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Built-in Concurrency</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Goroutines and channels enable efficient parallel execution of workflow steps without complex threading.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Cross-Platform Support</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Compile for Linux, macOS, Windows, and various architectures (AMD64, ARM64) from a single codebase.
-                  </p>
-                </div>
-              </div>
-              <Separator />
-              <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
-                <p className="text-sm">
-                  <strong>Result:</strong> Shiro can process complex DAG workflows with multiple steps in under 100ms, making it ideal for CI/CD pipelines where speed matters.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          <FadeUp>
+            <h2 className="text-3xl font-bold mb-2">Why GoLang?</h2>
+            <p className="text-muted-foreground mb-8">Go&apos;s compiled nature enables Shiro to process complex DAG workflows in under 100ms.</p>
+          </FadeUp>
+          <StaggerGroup className="grid md:grid-cols-2 gap-5">
+            {goReasons.map((r) => (
+              <StaggerItem key={r.title}>
+                <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{r.icon}</span>
+                      <CardTitle className="text-lg">{r.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{r.desc}</p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </section>
+
+        <Separator />
 
         {/* Module System */}
         <section>
-          <h2 className="text-3xl font-bold mb-6">Module System Architecture</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle>Pluggable Design</CardTitle>
-              <CardDescription>
-                Extensible architecture for custom integrations
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-2">Built-in Modules</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Core functionality compiled directly into the binary for zero-dependency execution (print, slack, git, AI).
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Subprocess Modules</h3>
-                  <p className="text-sm text-muted-foreground">
-                    External programs communicating via JSON over stdin/stdout. Supports binary mode or go-run mode for flexibility.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">HTTP Modules</h3>
-                  <p className="text-sm text-muted-foreground">
-                    RESTful API endpoints for module communication with load balancing, health checks, and circuit breakers.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">GitHub Integration</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Auto-discover and install modules from GitHub repositories with metadata extraction from README files.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <FadeUp>
+            <h2 className="text-3xl font-bold mb-2">Module System Architecture</h2>
+            <p className="text-muted-foreground mb-8">Four module types give you zero-dependency built-ins and unlimited extensibility.</p>
+          </FadeUp>
+          <StaggerGroup className="grid md:grid-cols-2 gap-5">
+            {moduleTypes.map((m) => (
+              <StaggerItem key={m.title}>
+                <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
+                  <CardHeader>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{m.icon}</span>
+                        <CardTitle className="text-lg">{m.title}</CardTitle>
+                      </div>
+                      <Badge variant="secondary" className="shrink-0">{m.badge}</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{m.desc}</p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </section>
+
+        <Separator />
 
         {/* AI Providers */}
         <section>
-          <h2 className="text-3xl font-bold mb-6">AI Provider Support</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle>Multi-Provider Architecture</CardTitle>
-              <CardDescription>
-                First-class support for multiple AI providers
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-3 gap-6">
-                <Card>
+          <FadeUp>
+            <h2 className="text-3xl font-bold mb-2">AI Provider Support</h2>
+            <p className="text-muted-foreground mb-8">First-class support for multiple AI providers — local or cloud.</p>
+          </FadeUp>
+          <StaggerGroup className="grid md:grid-cols-3 gap-5">
+            {aiProviders.map((p) => (
+              <StaggerItem key={p.title}>
+                <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
                   <CardHeader>
-                    <CardTitle className="text-lg">Ollama</CardTitle>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{p.icon}</span>
+                        <CardTitle className="text-lg">{p.title}</CardTitle>
+                      </div>
+                      <Badge variant="outline" className="shrink-0 text-xs">{p.badge}</Badge>
+                    </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      Local LLM support for privacy and offline operation. Run models like Llama, Mistral, and more on your own hardware.
-                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
                   </CardContent>
                 </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">OpenAI</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      GPT-4 and other OpenAI models for production-grade AI capabilities with enterprise reliability.
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">Custom</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      Any OpenAI-compatible endpoint including local servers, vLLM, or custom deployments.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-              <Separator />
-              <div>
-                <h3 className="font-semibold mb-2">Environment Variable Resolution</h3>
-                <p className="text-sm text-muted-foreground">
-                  Secure configuration using <code className="bg-muted px-1 rounded">{"{env.VARIABLE}"}</code> syntax in config files. API keys and sensitive data never need to be hardcoded.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+          <FadeUp delay={0.2}>
+            <div className="mt-6 bg-primary/10 p-4 rounded-xl border border-primary/20 text-sm">
+              <strong>Secure config:</strong>{" "}
+              <span className="text-muted-foreground">Use </span>
+              <code className="bg-muted px-1.5 py-0.5 rounded text-xs">{'{env.API_KEY}'}</code>
+              <span className="text-muted-foreground"> syntax — API keys never hardcoded in workflow files.</span>
+            </div>
+          </FadeUp>
         </section>
 
-        {/* CI Platform Support */}
+        <Separator />
+
+        {/* CI Platforms */}
         <section>
-          <h2 className="text-3xl font-bold mb-6">CI Platform Integration</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle>Universal Compatibility</CardTitle>
-              <CardDescription>
-                Runs in any CI/CD environment
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-2 flex items-center gap-2">
-                    GitLab CI <Badge variant="secondary">Recommended</Badge>
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Native support with GitLab artifacts for state storage, human-in-loop approvals, and manual job resumption.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">GitHub Actions</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Full integration with GitHub Actions for automated PR reviews, push notifications, and workflow automation.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Jenkins</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Compatible with Jenkins pipelines using the shiro binary as a build step or shell command.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Kubernetes Jobs</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Run as Kubernetes Jobs for cloud-native CI/CD with container isolation and scalability.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <FadeUp>
+            <h2 className="text-3xl font-bold mb-2">CI Platform Integration</h2>
+            <p className="text-muted-foreground mb-8">Runs inside your existing runners — no new infrastructure required.</p>
+          </FadeUp>
+          <StaggerGroup className="grid md:grid-cols-2 gap-5">
+            {ciPlatforms.map((c) => (
+              <StaggerItem key={c.title}>
+                <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
+                  <CardHeader>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{c.icon}</span>
+                        <CardTitle className="text-lg">{c.title}</CardTitle>
+                      </div>
+                      <Badge variant="secondary" className="shrink-0">{c.badge}</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </section>
+
+        <Separator />
 
         {/* State Storage */}
         <section>
-          <h2 className="text-3xl font-bold mb-6">State Storage Architecture</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle>Flexible Backend Support</CardTitle>
-              <CardDescription>
-                Modular state storage for different environments
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <Badge className="mt-1">Default in CI</Badge>
-                  <div>
-                    <h3 className="font-semibold">GitLab Artifacts</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Automatically uploads workflow state to GitLab CI artifacts and downloads between pipeline stages. No external infrastructure required.
-                    </p>
-                  </div>
-                </div>
-                <Separator />
-                <div className="flex items-start gap-4">
-                  <Badge variant="secondary">Local Dev</Badge>
-                  <div>
-                    <h3 className="font-semibold">Filesystem</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Stores state in local filesystem for development and testing. Simple and reliable for local workflows.
-                    </p>
-                  </div>
-                </div>
-                <Separator />
-                <div className="flex items-start gap-4">
-                  <Badge variant="outline">Ephemeral</Badge>
-                  <div>
-                    <h3 className="font-semibold">Memory</h3>
-                    <p className="text-sm text-muted-foreground">
-                      In-memory storage for workflows that don&apos;t require persistence. Fastest option but state is lost after execution.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <FadeUp>
+            <h2 className="text-3xl font-bold mb-2">State Storage Backends</h2>
+            <p className="text-muted-foreground mb-8">Pluggable state backends — from CI-native artifacts to in-memory ephemeral storage.</p>
+          </FadeUp>
+          <StaggerGroup className="grid md:grid-cols-3 gap-5">
+            {stateBackends.map((s) => (
+              <StaggerItem key={s.title}>
+                <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
+                  <CardHeader>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{s.icon}</span>
+                        <CardTitle className="text-lg">{s.title}</CardTitle>
+                      </div>
+                      <Badge variant="outline" className="shrink-0 text-xs">{s.badge}</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </section>
 
-        {/* Performance Characteristics */}
-        <section>
-          <h2 className="text-3xl font-bold mb-6">Performance Characteristics</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle>Benchmarks & Metrics</CardTitle>
-              <CardDescription>
-                Real-world performance metrics
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-primary">&lt;100ms</div>
-                  <div className="text-sm text-muted-foreground mt-2">Workflow startup time</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-primary">10MB</div>
-                  <div className="text-sm text-muted-foreground mt-2">Binary size</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-primary">0</div>
-                  <div className="text-sm text-muted-foreground mt-2">Runtime dependencies</div>
-                </div>
-              </div>
-              <Separator />
-              <div className="text-sm text-muted-foreground">
-                <p>
-                  Shiro&apos;s Go-based architecture ensures minimal overhead, fast startup times, and efficient resource utilization. The single binary design eliminates dependency hell and makes deployment trivial across environments.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
       </div>
     </div>
   );
