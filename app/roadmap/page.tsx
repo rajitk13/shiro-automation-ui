@@ -23,7 +23,7 @@ const planned = [
 
 export default function RoadmapPage() {
   return (
-    <div className="container mx-auto px-6 py-20 max-w-6xl">
+    <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-20 max-w-6xl">
       <div className="space-y-20">
 
         {/* Hero */}

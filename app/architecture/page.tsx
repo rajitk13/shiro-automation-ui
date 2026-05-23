@@ -60,7 +60,7 @@ const stateCards = [
 
 export default function ArchitecturePage() {
   return (
-    <div className="container mx-auto px-6 py-20 max-w-6xl">
+    <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-20 max-w-6xl">
       <div className="space-y-20">
 
         {/* Hero */}
@@ -77,7 +77,7 @@ export default function ArchitecturePage() {
           >
             <Badge variant="secondary" className="mb-2 text-sm px-3 py-1">System Design</Badge>
           </motion.div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight gradient-text">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight gradient-text">
             Architecture
           </h1>
           <motion.p

@@ -7,6 +7,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { Logo } from "@/components/Logo";
 import { ChimeEffect } from "@/components/ChimeEffect";
 import { DynamicTheme } from "@/components/DynamicTheme";
+import { MobileNav } from "@/components/MobileNav";
+import { FloatingAIButton } from "@/components/FloatingAIButton";
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -120,11 +122,13 @@ export default function RootLayout({
                   </a>
                   <ThemeToggle />
                 </div>
+                <MobileNav />
               </div>
             </div>
           </nav>
           <main className="flex-1">{children}</main>
-          <footer className="border-t border-border/60 py-10 mt-20">
+          <FloatingAIButton />
+          <footer className="border-t border-border/60 py-8 mt-16">
             <div className="container mx-auto px-6">
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                 <div className="flex items-center gap-3">
@@ -133,7 +137,7 @@ export default function RootLayout({
                     © 2026 Shiro Automation. Apache 2.0 license.
                   </span>
                 </div>
-                <div className="flex items-center gap-5">
+                <div className="flex flex-wrap items-center gap-5 justify-center">
                   <span className="text-sm text-muted-foreground">Built by</span>
                   <a
                     href="https://www.linkedin.com/in/rajitkuthiala/"

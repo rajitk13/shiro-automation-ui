@@ -27,12 +27,12 @@ export default function ModulesPage() {
   }, []);
 
   return (
-    <div className="container mx-auto px-6 py-20 max-w-6xl">
+    <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-20 max-w-6xl">
       <div className="space-y-16">
         <FadeUp>
           <div className="text-center space-y-4">
             <Badge variant="secondary" className="mb-2">Ecosystem</Badge>
-            <h1 className="text-5xl font-bold">Community Modules</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold">Community Modules</h1>
             <div className="text-xl text-muted-foreground max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-2">
               <span>Discover and install community modules tagged with</span>
               <Badge>shiro-automation-module</Badge>

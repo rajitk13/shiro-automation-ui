@@ -24,7 +24,7 @@ const nextSteps = [
 
 export default function GettingStartedPage() {
   return (
-    <div className="container mx-auto px-6 py-20 max-w-6xl">
+    <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-20 max-w-6xl">
       <div className="space-y-20">
 
         {/* Hero */}
@@ -37,7 +37,7 @@ export default function GettingStartedPage() {
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
             <Badge variant="secondary" className="mb-2 text-sm px-3 py-1">Quick Start</Badge>
           </motion.div>
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight gradient-text">Getting Started</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight gradient-text">Getting Started</h1>
           <motion.p
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
             className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"

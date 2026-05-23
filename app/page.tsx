@@ -40,16 +40,16 @@ export default function Home() {
                 </Badge>
               </FadeIn>
               <FadeUp delay={0.15}>
-                <h1 className="text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
                   <span className="gradient-text">Shiro</span>
                   <br />
-                  <span className="text-foreground/80 text-4xl md:text-5xl font-semibold mt-2 block">
+                  <span className="text-foreground/80 text-2xl sm:text-4xl md:text-5xl font-semibold mt-2 block">
                     Automation
                   </span>
                 </h1>
               </FadeUp>
               <FadeUp delay={0.25}>
-                <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
+                <p className="text-base sm:text-lg text-muted-foreground mb-10 leading-relaxed">
                   A portable workflow orchestration runtime built with{" "}
                   <strong className="text-foreground">Go</strong> for blazing-fast CI/CD.
                   AI-native, module-driven, human-in-loop — ready for production.
@@ -101,11 +101,11 @@ export default function Home() {
       </FadeIn>
 
       {/* Features */}
-      <section className="py-24 px-6">
+      <section className="py-16 sm:py-24 px-6">
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Why to choose this</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Why to choose this</h2>
               <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
                 Shiro is the only AI-native workflow runtime that runs inside your existing CI pipeline — no new infrastructure, no always-on servers, just a single binary.
               </p>
@@ -182,12 +182,12 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 px-6">
+      <section className="py-16 sm:py-24 px-6">
         <FadeUp>
           <div className="container mx-auto max-w-4xl">
-            <div className="relative rounded-2xl border border-primary/30 bg-primary/5 p-12 text-center overflow-hidden">
+            <div className="relative rounded-2xl border border-primary/30 bg-primary/5 p-6 sm:p-12 text-center overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 pointer-events-none" />
-              <h2 className="text-4xl font-bold mb-4 relative z-10">Start automating today</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 relative z-10">Start automating today</h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto relative z-10">
                 Production-ready in minutes. No credit card, no SaaS lock-in — just a Go binary.
               </p>
