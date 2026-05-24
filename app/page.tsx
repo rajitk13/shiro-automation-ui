@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,6 +21,11 @@ const stats = [
   { value: "0", label: "Dependencies" },
   { value: "∞", label: "Scalability" },
 ];
+
+export const metadata: Metadata = {
+  title: "Shiro - Zero-Infrastructure AI-Native CI/CD Automation",
+  description: "Shiro: The only AI-native CI/CD workflow runtime that runs inside your existing GitLab CI, GitHub Actions, Jenkins, or Kubernetes. No new infrastructure, no always-on servers. Single binary.",
+};
 
 export default function Home() {
   return (

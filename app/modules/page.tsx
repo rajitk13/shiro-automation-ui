@@ -1,6 +1,12 @@
 "use client";
 
+import type { Metadata } from "next";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
+export const metadata: Metadata = {
+  title: "Community Modules - Shiro Automation Ecosystem",
+  description: "Discover and install community modules for Shiro Automation. Extend functionality with Jira, Slack, SonarQube, Docker, and custom modules.",
+};
 import { Badge } from "@/components/ui/badge";
 import { searchShiroModules, GitHubRepo } from "@/lib/github-api";
 import { useEffect, useState } from "react";

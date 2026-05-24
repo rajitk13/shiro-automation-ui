@@ -2,6 +2,12 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Getting Started - Shiro Automation",
+  description: "Quick start guide for Shiro Automation. Install, initialize, configure AI provider, and run your first AI-native CI/CD workflow in minutes.",
+};
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

@@ -42,9 +42,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shiro Automation - AI-Native CI Workflow Runtime",
-  description: "A portable workflow orchestration runtime optimized for CI/CD environments with AI-native capabilities. Built with Go for blazing fast performance.",
-  keywords: ["CI/CD", "workflow automation", "AI-native", "Go", "GitLab", "GitHub Actions", "DevOps"],
+  title: "Shiro Automation - AI-Native CI/CD Workflow Runtime",
+  description: "Shiro Automation: A portable, zero-infrastructure workflow orchestration runtime for CI/CD. AI-native, DAG-based execution, GitLab CI & GitHub Actions integration. Single binary, no servers.",
+  keywords: ["shiro", "shiro-automation", "automation", "CI/CD automation", "automation tools", "no infra automation", "workflow automation", "AI-native CI", "GitLab CI", "GitHub Actions", "Jenkins", "Kubernetes CI", "DevOps automation", "DAG workflow", "human-in-loop", "module system", "Ollama", "OpenAI integration"],
   authors: [{ name: "Rajit Kuthiala" }],
   openGraph: {
     title: "Shiro Automation - AI-Native CI Workflow Runtime",

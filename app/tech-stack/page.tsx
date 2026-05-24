@@ -1,6 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tech Stack - Shiro Automation Technology",
+  description: "Shiro's tech stack: Go runtime, DAG execution, GitLab artifact storage, filesystem and memory backends. Zero dependencies, single binary deployment.",
+};
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
