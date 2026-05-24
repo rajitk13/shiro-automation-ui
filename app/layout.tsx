@@ -101,6 +101,7 @@ export default function RootLayout({
                     ["Modules", "/modules"],
                     ["Integrations", "/integrations"],
                     ["Examples", "/examples"],
+                    ["Releases", "/releases"],
                     ["Roadmap", "/roadmap"],
                   ].map(([label, href]) => (
                     <Link

@@ -13,6 +13,7 @@ const navLinks = [
   ["Modules", "/modules"],
   ["Integrations", "/integrations"],
   ["Examples", "/examples"],
+  ["Releases", "/releases"],
   ["Roadmap", "/roadmap"],
 ];
 
