@@ -1,12 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Roadmap - Shiro Automation Future Plans",
-  description: "Shiro Automation roadmap: Visual workflow builder, enhanced module registry, additional CI platforms, advanced AI features, and enterprise capabilities coming soon.",
-};
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";

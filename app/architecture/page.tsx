@@ -1,12 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Architecture - Shiro Automation System Design",
-  description: "Understand Shiro's modular architecture: DAG execution engine, AI provider integration, module system, GitLab artifact storage, and workflow orchestration design.",
-};
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
