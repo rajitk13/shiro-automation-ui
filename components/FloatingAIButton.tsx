@@ -8,6 +8,18 @@ export function FloatingAIButton() {
   const router = useRouter();
   const isAIPage = pathname === "/ai-prompts";
 
+  const handleHumanClick = () => {
+    if (isAIPage) {
+      router.push("/");
+    }
+  };
+
+  const handleAgentClick = () => {
+    if (!isAIPage) {
+      router.push("/ai-prompts");
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
@@ -19,7 +31,7 @@ export function FloatingAIButton() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => router.push(isAIPage ? "/" : "/ai-prompts")}
+          onClick={handleHumanClick}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
             !isAIPage
               ? "bg-primary text-primary-foreground shadow-primary/30"
@@ -32,7 +44,7 @@ export function FloatingAIButton() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => router.push(isAIPage ? "/" : "/ai-prompts")}
+          onClick={handleAgentClick}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
             isAIPage
               ? "bg-primary text-primary-foreground shadow-primary/30"
