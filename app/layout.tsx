@@ -47,8 +47,10 @@ export const metadata: Metadata = {
   keywords: ["shiro", "shiro-automation", "automation", "CI/CD automation", "automation tools", "no infra automation", "workflow automation", "AI-native CI", "GitLab CI", "GitHub Actions", "Jenkins", "Kubernetes CI", "DevOps automation", "DAG workflow", "human-in-loop", "module system", "Ollama", "OpenAI integration"],
   authors: [{ name: "Rajit Kuthiala" }],
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/logo.png", sizes: "512x512", type: "image/png" },
+    ],
     apple: "/logo.png",
   },
   manifest: "/manifest.json",
@@ -82,6 +84,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
         />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/logo.png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider>
