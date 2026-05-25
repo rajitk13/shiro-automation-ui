@@ -46,6 +46,11 @@ export const metadata: Metadata = {
   description: "Shiro Automation: A portable, zero-infrastructure workflow orchestration runtime for CI/CD. AI-native, DAG-based execution, GitLab CI & GitHub Actions integration. Single binary, no servers.",
   keywords: ["shiro", "shiro-automation", "automation", "CI/CD automation", "automation tools", "no infra automation", "workflow automation", "AI-native CI", "GitLab CI", "GitHub Actions", "Jenkins", "Kubernetes CI", "DevOps automation", "DAG workflow", "human-in-loop", "module system", "Ollama", "OpenAI integration"],
   authors: [{ name: "Rajit Kuthiala" }],
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
+  manifest: "/manifest.json",
   openGraph: {
     title: "Shiro Automation - AI-Native CI Workflow Runtime",
     description: "A portable workflow orchestration runtime optimized for CI/CD environments with AI-native capabilities.",

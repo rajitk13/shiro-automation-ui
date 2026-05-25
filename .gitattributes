@@ -1,0 +1,39 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Image files as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.webp binary
+
+# Fonts as binary
+*.woff binary
+*.*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# PDF files as binary
+*.pdf binary
+
+# Shell scripts with LF
+*.sh text eol=lf
+
+# JSON files
+*.json text eol=lf
+
+# TypeScript/JavaScript
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+
+# CSS/SCSS
+*.css text eol=lf
+*.scss text eol=lf
+
+# Markdown
+*.md text eol=lf
