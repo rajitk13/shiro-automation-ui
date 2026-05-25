@@ -94,12 +94,7 @@ export default function ExamplesPage() {
 
 ai-mr-review:
   stage: review
-  image: ubuntu:latest
-  before_script:
-    - apt-get update && apt-get install -y curl
-    - curl -LO https://github.com/rajitk13/shiro-automation/releases/latest/download/shiro-linux-amd64
-    - chmod +x shiro-linux-amd64
-    - mv shiro-linux-amd64 /usr/local/bin/shiro
+  image: ghcr.io/rajitk13/shiro-automation:latest
   script:
     - shiro run examples/mr-review.json -config configs/models.yaml -state-store gitlab
   artifacts:
@@ -135,12 +130,7 @@ ai-mr-review:
 
 approval-initial:
   stage: approval
-  image: ubuntu:latest
-  before_script:
-    - apt-get update && apt-get install -y curl
-    - curl -LO https://github.com/rajitk13/shiro-automation/releases/latest/download/shiro-linux-amd64
-    - chmod +x shiro-linux-amd64
-    - mv shiro-linux-amd64 /usr/local/bin/shiro
+  image: ghcr.io/rajitk13/shiro-automation:latest
   script:
     - shiro validate -workflow examples/conditional-approval-workflow.json -config configs/models.yaml
     - shiro run -workflow examples/conditional-approval-workflow.json -config configs/models.yaml -state-store gitlab -fresh
@@ -154,12 +144,7 @@ approval-initial:
 
 approval-resume:
   stage: approval
-  image: ubuntu:latest
-  before_script:
-    - apt-get update && apt-get install -y curl
-    - curl -LO https://github.com/rajitk13/shiro-automation/releases/latest/download/shiro-linux-amd64
-    - chmod +x shiro-linux-amd64
-    - mv shiro-linux-amd64 /usr/local/bin/shiro
+  image: ghcr.io/rajitk13/shiro-automation:latest
   script:
     - shiro validate -workflow examples/conditional-approval-workflow.json -config configs/models.yaml
     - shiro run -workflow examples/conditional-approval-workflow.json -config configs/models.yaml -state-store gitlab
@@ -201,12 +186,7 @@ approval-resume:
 
 push-notification:
   stage: review
-  image: ubuntu:latest
-  before_script:
-    - apt-get update && apt-get install -y curl
-    - curl -LO https://github.com/rajitk13/shiro-automation/releases/latest/download/shiro-linux-amd64
-    - chmod +x shiro-linux-amd64
-    - mv shiro-linux-amd64 /usr/local/bin/shiro
+  image: ghcr.io/rajitk13/shiro-automation:latest
   script:
     - shiro run examples/push-notification.json -config configs/models.yaml
   only:
@@ -239,16 +219,9 @@ push-notification:
 
 test-jira:
   stage: test
-  image: golang:1.23
-  before_script:
-    - curl -LOk https://github.com/rajitk13/shiro-automation/releases/latest/download/shiro-linux-arm64
-    - chmod +x shiro-linux-arm64
-    - mv shiro-linux-arm64 /usr/local/bin/shiro
+  image: ghcr.io/rajitk13/shiro-automation:latest
   script:
-    - SHIRO_INSECURE_TLS=1 shiro add module github.com/your-org/your-module
-    - export GOSUMDB=off
-    - export GOPROXY=direct
-    - export GIT_SSL_NO_VERIFY=1
+    - shiro add module github.com/your-org/your-module
     - shiro run
   variables:
     MY_SERVICE_URL: "https://your-service.example.com"`}</code>
