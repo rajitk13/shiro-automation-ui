@@ -47,7 +47,8 @@ export const metadata: Metadata = {
   keywords: ["shiro", "shiro-automation", "automation", "CI/CD automation", "automation tools", "no infra automation", "workflow automation", "AI-native CI", "GitLab CI", "GitHub Actions", "Jenkins", "Kubernetes CI", "DevOps automation", "DAG workflow", "human-in-loop", "module system", "Ollama", "OpenAI integration"],
   authors: [{ name: "Rajit Kuthiala" }],
   icons: {
-    icon: "/logo.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/logo.png",
   },
   manifest: "/manifest.json",

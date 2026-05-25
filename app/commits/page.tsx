@@ -83,7 +83,7 @@ export default function CommitsPage() {
                           {commit.commit.message}
                         </CardTitle>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          {commit.author && (
+                          {commit.author && commit.author.avatar_url && (
                             <div className="relative w-5 h-5 rounded-full overflow-hidden">
                               <Image
                                 src={commit.author.avatar_url}
