@@ -27,6 +27,28 @@ export interface GitHubRelease {
   };
   prerelease: boolean;
   draft: boolean;
+  assets: Array<{
+    name: string;
+    browser_download_url: string;
+    size: number;
+  }>;
+}
+
+export interface GitHubCommit {
+  sha: string;
+  commit: {
+    message: string;
+    author: {
+      name: string;
+      email: string;
+      date: string;
+    };
+  };
+  html_url: string;
+  author: {
+    login: string;
+    avatar_url: string;
+  };
 }
 
 export async function searchShiroModules(): Promise<GitHubRepo[]> {
@@ -113,5 +135,30 @@ export async function fetchLatestRelease(): Promise<GitHubRelease | null> {
   } catch (error) {
     console.error('Error fetching latest release:', error);
     return null;
+  }
+}
+
+export async function fetchRecentCommits(limit: number = 20): Promise<GitHubCommit[]> {
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/rajitk13/shiro-automation/commits?per_page=${limit}`,
+      {
+        headers: {
+          Accept: 'application/vnd.github+json',
+          'User-Agent': 'Shiro-Automation-UI',
+        },
+        next: { revalidate: 300 },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`GitHub API error: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching recent commits:', error);
+    return [];
   }
 }

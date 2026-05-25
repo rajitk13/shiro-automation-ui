@@ -5,12 +5,15 @@ import { Badge } from "@/components/ui/badge";
 import { fetchShiroReleases, fetchLatestRelease, GitHubRelease } from "@/lib/github-api";
 import { useEffect, useState } from "react";
 import { FadeUp, StaggerGroup, StaggerItem } from "@/components/Animate";
+import { ReleaseAssetsModal } from "@/components/ReleaseAssetsModal";
 
 export default function ReleasesPage() {
   const [releases, setReleases] = useState<GitHubRelease[]>([]);
   const [latestReleaseId, setLatestReleaseId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedRelease, setSelectedRelease] = useState<GitHubRelease | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -103,12 +106,30 @@ export default function ReleasesPage() {
                       </div>
                     </CardContent>
                   )}
+                  {release.assets && release.assets.length > 0 && (
+                    <CardContent>
+                      <button
+                        onClick={() => {
+                          setSelectedRelease(release);
+                          setIsModalOpen(true);
+                        }}
+                        className="w-full p-3 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors text-sm font-medium"
+                      >
+                        View {release.assets.length} asset{release.assets.length > 1 ? 's' : ''}
+                      </button>
+                    </CardContent>
+                  )}
                 </Card>
               </StaggerItem>
             ))}
           </StaggerGroup>
         )}
       </div>
+      <ReleaseAssetsModal
+        release={selectedRelease}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }
