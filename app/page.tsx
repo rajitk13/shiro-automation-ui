@@ -7,12 +7,12 @@ import { FadeUp, FadeIn, StaggerGroup, StaggerItem, GlowCard } from "@/component
 import { TerminalAnimation } from "@/components/TerminalAnimation";
 
 const features = [
-  { icon: "⚡", title: "Zero Infrastructure", desc: "Runs inside your existing CI runners — GitLab, GitHub Actions, Jenkins, Kubernetes. No new servers, no SaaS, no lock-in." },
-  { icon: "📦", title: "Single Binary", desc: "Drop one 10MB file anywhere. No dependencies, no JVM, no container orchestration. Works where you already have a runner." },
-  { icon: "🤖", title: "AI-Native", desc: "First-class Ollama, OpenAI, and custom endpoint support. Intelligent automation baked in, not bolted on." },
-  { icon: "🔀", title: "DAG Execution", desc: "Topological sorting with intelligent dependency resolution. Parallel execution when steps allow it." },
-  { icon: "🧩", title: "Module System", desc: "Pluggable architecture with GitHub marketplace. Discover and install community modules in one command." },
-  { icon: "🔁", title: "Human-in-Loop", desc: "Pause workflows and require manual approval via GitLab manual jobs. Resume exactly where you left off." },
+  { icon: "⚡", title: "CI-Native Execution", desc: "Runs inside your existing GitLab CI, GitHub Actions, Jenkins, or Kubernetes. No new infrastructure, no always-on orchestration servers." },
+  { icon: "🤖", title: "AI-Native Workflows", desc: "Built for AI from day one. PR reviews, release notes, incident summarization, Jira automation — all with your AI providers." },
+  { icon: "🔒", title: "Enterprise Governance", desc: "Human-in-loop approvals, audit trails, and state persistence. Built for teams that need control, not chaos." },
+  { icon: "�", title: "Single Binary", desc: "One 10MB Go binary. No JVM, no dependencies, no container orchestration. Works where you already have a runner." },
+  { icon: "🧩", title: "Module System", desc: "Reusable workflows and integrations from the community. Install Jira, Slack, or custom modules in one command." },
+  { icon: "�", title: "DAG Execution", desc: "Intelligent dependency resolution with automatic parallelism. Ephemeral execution — no long-running state machines." },
 ];
 
 const stats = [
@@ -23,8 +23,8 @@ const stats = [
 ];
 
 export const metadata: Metadata = {
-  title: "Shiro - Zero-Infrastructure AI-Native CI/CD Automation",
-  description: "Shiro: The only AI-native CI/CD workflow runtime that runs inside your existing GitLab CI, GitHub Actions, Jenkins, or Kubernetes. No new infrastructure, no always-on servers. Single binary.",
+  title: "Shiro - AI-Native Workflow Orchestration for CI/CD",
+  description: "The portable AI orchestration runtime that runs inside your existing CI. AI PR reviews, deployment approvals, release notes — no new infrastructure required.",
 };
 
 export default function Home() {
@@ -42,33 +42,32 @@ export default function Home() {
             <div>
               <FadeIn delay={0.05}>
                 <Badge className="mb-6 px-4 py-1.5 text-sm font-medium">
-                  🚀 AI-Native CI/CD Workflow Runtime
+                  🚀 AI-Native Workflow Orchestration
                 </Badge>
               </FadeIn>
               <FadeUp delay={0.15}>
                 <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
-                  <span className="gradient-text">Shiro</span>
+                  <span className="gradient-text">AI workflows</span>
                   <br />
                   <span className="text-foreground/80 text-2xl sm:text-4xl md:text-5xl font-semibold mt-2 block">
-                    Automation
+                    inside your CI
                   </span>
                 </h1>
               </FadeUp>
               <FadeUp delay={0.25}>
                 <p className="text-base sm:text-lg text-muted-foreground mb-10 leading-relaxed">
-                  A portable workflow orchestration runtime built with{" "}
-                  <strong className="text-foreground">Go</strong> for blazing-fast CI/CD.
-                  AI-native, module-driven, human-in-loop — ready for production.
+                  The portable orchestration runtime that runs inside your existing GitLab CI, GitHub Actions, Jenkins, or Kubernetes.
+                  <strong className="text-foreground">No new infrastructure. No always-on servers.</strong> Just a single Go binary.
                 </p>
               </FadeUp>
               <FadeUp delay={0.35}>
                 <div className="flex flex-wrap gap-4 mb-8">
                   <Button size="lg" className="px-8 h-12 text-base shadow-lg shadow-primary/25" asChild>
-                    <Link href="/getting-started">Get Started →</Link>
+                    <Link href="/getting-started">Start automating →</Link>
                   </Button>
                   <Button size="lg" variant="outline" className="px-8 h-12 text-base" asChild>
                     <a href="https://github.com/rajitk13/shiro-automation" target="_blank" rel="noopener noreferrer">
-                      View on GitHub
+                      ⭐ Star on GitHub
                     </a>
                   </Button>
                 </div>
@@ -111,9 +110,9 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Why to choose this</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Why teams choose Shiro</h2>
               <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
-                Shiro is the only AI-native workflow runtime that runs inside your existing CI pipeline — no new infrastructure, no always-on servers, just a single binary.
+                Shiro is <strong className="text-foreground">not another CI platform</strong> — it's the AI orchestration layer that runs inside your existing infrastructure. No SaaS, no lock-in, no orchestration clusters.
               </p>
             </div>
           </FadeUp>
@@ -136,19 +135,114 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Target Audience */}
+      <section className="py-16 sm:py-24 px-6 bg-muted/20">
+        <div className="container mx-auto max-w-6xl">
+          <FadeUp>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Built for modern infrastructure teams</h2>
+              <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
+                Shiro is designed for teams who need AI automation without the operational overhead of dedicated orchestration infrastructure.
+              </p>
+            </div>
+          </FadeUp>
+
+          <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { icon: "🏗️", title: "Platform Engineers", desc: "Build internal developer platforms with AI workflows that run in your existing CI." },
+              { icon: "🚀", title: "DevOps Teams", desc: "Automate deployments, approvals, and release notes without new infrastructure." },
+              { icon: "🤖", title: "AI Engineering", desc: "Ship AI-powered workflows with governance and human-in-loop controls." },
+              { icon: "🔒", title: "Enterprise Teams", desc: "Self-hosted, audit-ready automation that runs inside your infrastructure." },
+            ].map(({ icon, title, desc }) => (
+              <StaggerItem key={title}>
+                <Card className="border-border/60 bg-card/70 h-full">
+                  <CardHeader>
+                    <div className="text-3xl mb-3">{icon}</div>
+                    <CardTitle className="text-lg">{title}</CardTitle>
+                    <CardDescription className="text-sm leading-relaxed">{desc}</CardDescription>
+                  </CardHeader>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
+      </section>
+
+      {/* Differentiators */}
+      <section className="py-16 sm:py-24 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <FadeUp>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Not just another CI tool</h2>
+              <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
+                Shiro fills the gap between CI platforms and AI orchestration — without the complexity of dedicated infrastructure.
+              </p>
+            </div>
+          </FadeUp>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "vs Jenkins/GitLab CI",
+                items: [
+                  "AI-native workflows built-in",
+                  "Human-in-loop approvals with state persistence",
+                  "Portable across CI platforms",
+                  "No pipeline YAML complexity",
+                ],
+              },
+              {
+                title: "vs Temporal/n8n",
+                items: [
+                  "Runs inside your existing CI (no new servers)",
+                  "Single binary, no orchestration cluster",
+                  "Ephemeral execution (no long-running state machines)",
+                  "Zero operational overhead",
+                ],
+              },
+              {
+                title: "vs LangChain",
+                items: [
+                  "Built for CI/CD workflows, not just AI chains",
+                  "Enterprise governance and approvals",
+                  "Native GitLab/GitHub integration",
+                  "Production-ready error handling",
+                ],
+              },
+            ].map(({ title, items }) => (
+              <FadeUp key={title} delay={0.1}>
+                <Card className="border-border/60 bg-card/70 h-full">
+                  <CardHeader>
+                    <CardTitle className="text-lg mb-4">{title}</CardTitle>
+                    <ul className="space-y-3">
+                      {items.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-sm">
+                          <span className="text-primary mt-0.5">✓</span>
+                          <span className="text-muted-foreground">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardHeader>
+                </Card>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Code snippet section */}
       <section className="py-20 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <FadeUp>
               <div>
-                <Badge variant="secondary" className="mb-4">Simple by design</Badge>
-                <h2 className="text-4xl font-bold mb-5">From zero to workflow in 60 seconds</h2>
+                <Badge variant="secondary" className="mb-4">Developer-first</Badge>
+                <h2 className="text-4xl font-bold mb-5">Ship AI workflows in minutes, not months</h2>
                 <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                  Initialize, configure, and run your first AI-powered CI workflow without reading a 100-page manual.
+                  No complex orchestration clusters. No YAML hell. Just define your workflow, run it locally, and ship it to CI.
                 </p>
                 <ul className="space-y-3">
-                  {["Auto-detects your project structure", "Environment variable-based secrets", "DAG with automatic parallelism", "Human approval gates built-in"].map((item) => (
+                  {["Local development: shiro run workflow.json", "GitLab CI: one line with Docker image", "GitHub Actions: container-based execution", "State persistence across CI runs"].map((item) => (
                     <li key={item} className="flex items-center gap-3 text-sm">
                       <span className="w-5 h-5 rounded-full bg-primary/15 text-primary flex items-center justify-center text-xs font-bold">✓</span>
                       <span className="text-muted-foreground">{item}</span>
@@ -157,7 +251,7 @@ export default function Home() {
                 </ul>
                 <div className="mt-8">
                   <Button asChild>
-                    <Link href="/getting-started">Read the guide →</Link>
+                    <Link href="/getting-started">See the quick start →</Link>
                   </Button>
                 </div>
               </div>
@@ -193,16 +287,18 @@ export default function Home() {
           <div className="container mx-auto max-w-4xl">
             <div className="relative rounded-2xl border border-primary/30 bg-primary/5 p-6 sm:p-12 text-center overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 pointer-events-none" />
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4 relative z-10">Start automating today</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 relative z-10">Ready to ship AI workflows?</h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto relative z-10">
-                Production-ready in minutes. No credit card, no SaaS lock-in — just a Go binary.
+                Join platform engineers and DevOps teams automating with Shiro. Open source, Apache 2.0 licensed, production-ready.
               </p>
               <div className="flex flex-wrap gap-4 justify-center relative z-10">
                 <Button size="lg" className="px-8 shadow-lg shadow-primary/25" asChild>
-                  <Link href="/getting-started">Start for free →</Link>
+                  <Link href="/getting-started">Get started →</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <Link href="/architecture">Explore architecture</Link>
+                  <a href="https://github.com/rajitk13/shiro-automation" target="_blank" rel="noopener noreferrer">
+                    ⭐ Star on GitHub
+                  </a>
                 </Button>
               </div>
             </div>

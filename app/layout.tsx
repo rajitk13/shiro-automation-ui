@@ -26,7 +26,7 @@ const JSON_LD = {
     "sameAs": ["https://github.com/rajitk13", "https://www.linkedin.com/in/rajitkuthiala/"]
   },
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "license": "https://opensource.org/licenses/MIT",
+  "license": "https://opensource.org/licenses/Apache-2.0",
   "sourceCode": "https://github.com/rajitk13/shiro-automation",
   "featureList": ["AI-native workflow automation","DAG-based execution","Module system","GitLab CI integration","GitHub Actions integration","Human-in-loop approvals","Multiple AI provider support"]
 };

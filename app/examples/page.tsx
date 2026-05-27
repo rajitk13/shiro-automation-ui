@@ -7,9 +7,9 @@ import { Badge } from "@/components/ui/badge";
 import { FadeUp, StaggerGroup, StaggerItem } from "@/components/Animate";
 
 const quickRef = [
-  { icon: "🤖", title: "AI MR Review", desc: "Automated code review on merge requests using AI", badges: ["GitLab CI", "AI"] },
+  { icon: "🤖", title: "AI MR Review", desc: "Automated code review on merge requests using AI", badges: ["GitLab CI", "GitHub Actions", "AI"] },
   { icon: "👋", title: "Human-in-Loop Approval", desc: "Two-stage approval with Slack notification and manual trigger", badges: ["GitLab CI", "Slack", "Approval"] },
-  { icon: "🔔", title: "Push Notification", desc: "Notify your team on every push to main/master", badges: ["GitLab CI", "Slack"] },
+  { icon: "🔔", title: "Push Notification", desc: "Notify your team on every push to main/master", badges: ["GitLab CI", "GitHub Actions", "Slack"] },
   { icon: "📊", title: "Jira Integration", desc: "Create Jira issues from CI events using subprocess modules", badges: ["GitLab CI", "Jira"] },
 ];
 
@@ -72,10 +72,12 @@ export default function ExamplesPage() {
             <h2 className="text-3xl font-bold mb-8">GitLab CI Configurations</h2>
           </FadeUp>
           <Tabs defaultValue="mr-review" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-6">
               <TabsTrigger value="mr-review">MR Review</TabsTrigger>
+              <TabsTrigger value="gh-pr-review">GH PR Review</TabsTrigger>
               <TabsTrigger value="approval">Approval</TabsTrigger>
               <TabsTrigger value="push">Push Notification</TabsTrigger>
+              <TabsTrigger value="gh-push">GH Push</TabsTrigger>
               <TabsTrigger value="jira">Jira Integration</TabsTrigger>
             </TabsList>
 
@@ -95,11 +97,13 @@ export default function ExamplesPage() {
 ai-mr-review:
   stage: review
   image: ghcr.io/rajitk13/shiro-automation:latest
+  variables:
+    GITLAB_TOKEN: $GL_TOKEN
   script:
-    - shiro run examples/mr-review.json -config configs/models.yaml -state-store gitlab
+    - shiro run -workflow .shiro/workflows/code-review.json -config .shiro/config.yaml -state-store gitlab
   artifacts:
     paths:
-      - .shiro/
+      - .shiro/state/
     expire_in: 1 day
   only:
     - merge_requests`}</code>
@@ -109,6 +113,29 @@ ai-mr-review:
                       This workflow automatically reviews merge requests using AI, providing feedback on code quality and potential issues.
                     </p>
                     <Badge variant="outline">GitLab CI</Badge>
+                    <Badge variant="outline">AI</Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="gh-pr-review" className="mt-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>GitHub PR Review</CardTitle>
+                  <CardDescription>
+                    AI-powered code review for GitHub pull requests
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                    <code>{"name: AI PR Review\n\non:\n  pull_request:\n    types: [opened, synchronize, reopened]\n\njobs:\n  ai-review:\n    runs-on: ubuntu-latest\n    container:\n      image: ghcr.io/rajitk13/shiro-automation:latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n      - name: Run AI Review\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}\n        run: shiro run -workflow .shiro/workflows/github-mr-review.json -config .shiro/config.yaml"}</code>
+                  </pre>
+                  <div className="mt-4 space-y-2">
+                    <p className="text-sm text-muted-foreground">
+                      Automatically reviews GitHub pull requests using AI and posts comments to the PR.
+                    </p>
+                    <Badge variant="outline">GitHub Actions</Badge>
                     <Badge variant="outline">AI</Badge>
                   </div>
                 </CardContent>
@@ -132,11 +159,11 @@ approval-initial:
   stage: approval
   image: ghcr.io/rajitk13/shiro-automation:latest
   script:
-    - shiro validate -workflow examples/conditional-approval-workflow.json -config configs/models.yaml
-    - shiro run -workflow examples/conditional-approval-workflow.json -config configs/models.yaml -state-store gitlab -fresh
+    - shiro validate -workflow .shiro/workflows/conditional-approval-workflow.json -config .shiro/config.yaml
+    - shiro run -workflow .shiro/workflows/conditional-approval-workflow.json -config .shiro/config.yaml -state-store gitlab -fresh
   artifacts:
     paths:
-      - .shiro/
+      - .shiro/state/
     expire_in: 1 day
   only:
     - main
@@ -146,11 +173,11 @@ approval-resume:
   stage: approval
   image: ghcr.io/rajitk13/shiro-automation:latest
   script:
-    - shiro validate -workflow examples/conditional-approval-workflow.json -config configs/models.yaml
-    - shiro run -workflow examples/conditional-approval-workflow.json -config configs/models.yaml -state-store gitlab
+    - shiro validate -workflow .shiro/workflows/conditional-approval-workflow.json -config .shiro/config.yaml
+    - shiro run -workflow .shiro/workflows/conditional-approval-workflow.json -config .shiro/config.yaml -state-store gitlab
   artifacts:
     paths:
-      - .shiro/
+      - .shiro/state/
     expire_in: 1 day
   when: manual
   needs:
@@ -188,7 +215,7 @@ push-notification:
   stage: review
   image: ghcr.io/rajitk13/shiro-automation:latest
   script:
-    - shiro run examples/push-notification.json -config configs/models.yaml
+    - shiro run -workflow .shiro/workflows/push-notification.json -config .shiro/config.yaml
   only:
     - main
     - master`}</code>
@@ -198,6 +225,29 @@ push-notification:
                       Sends a Slack notification when code is pushed to main or master branches.
                     </p>
                     <Badge variant="outline">GitLab CI</Badge>
+                    <Badge variant="outline">Slack</Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="gh-push" className="mt-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>GitHub Push Notification</CardTitle>
+                  <CardDescription>
+                    Notify team on push to main branch
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                    <code>{"name: Push Notification\n\non:\n  push:\n    branches:\n      - main\n      - master\n\njobs:\n  notify:\n    runs-on: ubuntu-latest\n    container:\n      image: ghcr.io/rajitk13/shiro-automation:latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n      - name: Send Notification\n        env:\n          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}\n        run: shiro run -workflow .shiro/workflows/github-push-notification.json -config .shiro/config.yaml"}</code>
+                  </pre>
+                  <div className="mt-4 space-y-2">
+                    <p className="text-sm text-muted-foreground">
+                      Sends a Slack notification when code is pushed to main or master branches on GitHub.
+                    </p>
+                    <Badge variant="outline">GitHub Actions</Badge>
                     <Badge variant="outline">Slack</Badge>
                   </div>
                 </CardContent>
@@ -221,10 +271,13 @@ test-jira:
   stage: test
   image: ghcr.io/rajitk13/shiro-automation:latest
   script:
-    - shiro add module github.com/your-org/your-module
+    - shiro add module github.com/rajitk13/shiro-automation-jira-datacenter
+    - export GOSUMDB=off
+    - export GOPROXY=direct
     - shiro run
   variables:
-    MY_SERVICE_URL: "https://your-service.example.com"`}</code>
+    JIRA_BASE_URL: $JIRA_BASE_URL
+    JIRA_API_TOKEN: $JIRA_API_TOKEN`}</code>
                   </pre>
                   <div className="mt-4 space-y-2">
                     <p className="text-sm text-muted-foreground">

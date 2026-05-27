@@ -227,6 +227,9 @@ shiro init</code>
 │   └── registry.yaml
 └── workflows/`}</code></pre>
                   </div>
+                  <div className="bg-primary/10 p-4 rounded-lg border border-primary/20 text-sm">
+                    <strong>Tip:</strong> Use <code className="bg-muted px-1 rounded">shiro init -template code-review</code> to scaffold an AI-powered GitLab MR review workflow.
+                  </div>
                 </CardContent>
               </Card>
             </StaggerItem>
@@ -318,7 +321,7 @@ shiro remove module jira`}</code>
                   <span className="text-2xl">🦊</span>
                   <div>
                     <CardTitle>Integrate with GitLab CI/CD</CardTitle>
-                    <CardDescription>Use Shiro in your GitLab pipelines</CardDescription>
+                    <CardDescription>Use Shiro in your GitLab pipelines with Docker image</CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -329,19 +332,48 @@ shiro remove module jira`}</code>
 
 ai-review:
   stage: review
-  image: ubuntu:latest
-  before_script:
-    - apt-get update && apt-get install -y curl
-    - curl -LO https://github.com/rajitk13/shiro-automation/releases/latest/download/shiro-linux-amd64
-    - chmod +x shiro-linux-amd64
-    - mv shiro-linux-amd64 /usr/local/bin/shiro
+  image: ghcr.io/rajitk13/shiro-automation:latest
+  variables:
+    GITLAB_TOKEN: $GL_TOKEN
   script:
-    - shiro run
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'`}</code>
+    - shiro run -workflow .shiro/workflows/code-review.json -config .shiro/config.yaml -state-store gitlab
+  artifacts:
+    paths:
+      - .shiro/state/
+    expire_in: 1 day
+  only:
+    - merge_requests`}</code>
                 </pre>
                 <p className="text-sm text-muted-foreground">
-                  See the <Link href="/examples" className="text-primary underline">Examples</Link> page for more GitLab CI configurations.
+                  See the <Link href="/examples" className="text-primary underline">Examples</Link> page for more GitLab CI and GitHub Actions configurations.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeUp>
+        </section>
+
+        <Separator />
+
+        {/* GitHub Actions */}
+        <section>
+          <FadeUp>
+            <h2 className="text-3xl font-bold mb-8">GitHub Actions Integration</h2>
+            <Card className="border-border/60">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">🐙</span>
+                  <div>
+                    <CardTitle>Integrate with GitHub Actions</CardTitle>
+                    <CardDescription>Use Shiro in your GitHub workflows with Docker image</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <code>{"name: AI PR Review\n\non:\n  pull_request:\n    types: [opened, synchronize, reopened]\n\njobs:\n  ai-review:\n    runs-on: ubuntu-latest\n    container:\n      image: ghcr.io/rajitk13/shiro-automation:latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n      - name: Run AI Review\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}\n        run: shiro run -workflow .shiro/workflows/github-mr-review.json -config .shiro/config.yaml"}</code>
+                </pre>
+                <p className="text-sm text-muted-foreground">
+                  See the <Link href="/examples" className="text-primary underline">Examples</Link> page for more GitHub Actions configurations.
                 </p>
               </CardContent>
             </Card>
