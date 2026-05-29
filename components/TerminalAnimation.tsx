@@ -65,7 +65,7 @@ export function TerminalAnimation() {
         <span className="ml-auto text-xs text-zinc-600 font-mono">zsh</span>
       </div>
       {/* Body */}
-      <div className="p-5 font-mono text-sm min-h-[340px]">
+      <div className="p-5 font-mono text-xs h-[480px] overflow-hidden">
         {LINES.slice(0, shown).map((line, i) => (
           <div key={i} className={`leading-[1.65] ${line.cls || "text-zinc-700"}`}>
             {line.text || "\u00a0"}
