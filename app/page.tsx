@@ -7,24 +7,33 @@ import { FadeUp, FadeIn, StaggerGroup, StaggerItem, GlowCard } from "@/component
 import { TerminalAnimation } from "@/components/TerminalAnimation";
 
 const features = [
-  { icon: "⚡", title: "CI-Native Execution", desc: "Runs inside your existing GitLab CI, GitHub Actions, Jenkins, or Kubernetes. No new infrastructure, no always-on orchestration servers." },
-  { icon: "🤖", title: "AI-Native Workflows", desc: "Built for AI from day one. PR reviews, release notes, incident summarization, Jira automation — all with your AI providers." },
-  { icon: "🔒", title: "Enterprise Governance", desc: "Human-in-loop approvals, audit trails, and state persistence. Built for teams that need control, not chaos." },
-  { icon: "�", title: "Single Binary", desc: "One 10MB Go binary. No JVM, no dependencies, no container orchestration. Works where you already have a runner." },
-  { icon: "🧩", title: "Module System", desc: "Reusable workflows and integrations from the community. Install Jira, Slack, or custom modules in one command." },
-  { icon: "�", title: "DAG Execution", desc: "Intelligent dependency resolution with automatic parallelism. Ephemeral execution — no long-running state machines." },
+  { icon: "⚡", title: "CI-Native Execution", desc: "Runs as a Docker image inside GitLab CI or GitHub Actions. No new servers, no agents, no infra to manage." },
+  { icon: "🤖", title: "AI-Native Workflows", desc: "AI code review, release notes, incident summaries — powered by OpenAI, Ollama, or any custom endpoint." },
+  { icon: "🔒", title: "Human-in-Loop Approvals", desc: "Pause a workflow mid-pipeline, send a Slack notification, and resume on manual GitLab job trigger." },
+  { icon: "📦", title: "Single Binary", desc: "One 10MB Go binary. No JVM, no runtime dependencies. Works inside any CI runner that has Docker." },
+  { icon: "🧩", title: "Module System", desc: "Install Slack, Jira, git, AI modules with one command. Community modules on GitHub." },
+  { icon: "💾", title: "State Persistence", desc: "Save workflow state to GitLab artifacts between pipeline stages. Resume exactly where you left off." },
+];
+
+const workflows = [
+  { icon: "🔍", title: "AI PR / MR Review", desc: "Posts an AI-generated code review comment on every merge request." },
+  { icon: "✅", title: "Deployment Approval", desc: "Slack notification + human gate before production deploys." },
+  { icon: "🔔", title: "Push Notifications", desc: "Notify your team on every push to main via Slack." },
+  { icon: "📝", title: "Release Notes", desc: "Auto-generate release notes from commits using AI." },
+  { icon: "🐛", title: "Jira Automation", desc: "Create or update Jira issues from CI events automatically." },
+  { icon: "📊", title: "Incident Summaries", desc: "Summarize failures and alert the right team instantly." },
 ];
 
 const stats = [
   { value: "<100ms", label: "Startup time" },
   { value: "~10MB", label: "Binary size" },
-  { value: "0", label: "Dependencies" },
-  { value: "∞", label: "Scalability" },
+  { value: "0", label: "New infra needed" },
+  { value: "2", label: "CI platforms" },
 ];
 
 export const metadata: Metadata = {
-  title: "Shiro - AI-Native Workflow Orchestration for CI/CD",
-  description: "The portable AI orchestration runtime that runs inside your existing CI. AI PR reviews, deployment approvals, release notes — no new infrastructure required.",
+  title: "Shiro - AI Workflows for GitLab CI & GitHub Actions",
+  description: "Add AI-powered code review, deployment approvals, and Slack notifications to your GitLab CI or GitHub Actions pipeline. No new infrastructure — just a Docker image.",
 };
 
 export default function Home() {
@@ -42,22 +51,21 @@ export default function Home() {
             <div>
               <FadeIn delay={0.05}>
                 <Badge className="mb-6 px-4 py-1.5 text-sm font-medium">
-                  🚀 AI-Native Workflow Orchestration
+                  🦊 GitLab CI &nbsp;·&nbsp; 🐙 GitHub Actions &nbsp;·&nbsp; Jenkins &nbsp;·&nbsp; any runner
                 </Badge>
               </FadeIn>
               <FadeUp delay={0.15}>
                 <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
-                  <span className="gradient-text">AI workflows</span>
+                  <span className="gradient-text">Add AI</span>
                   <br />
                   <span className="text-foreground/80 text-2xl sm:text-4xl md:text-5xl font-semibold mt-2 block">
-                    inside your CI
+                    to your CI pipeline
                   </span>
                 </h1>
               </FadeUp>
               <FadeUp delay={0.25}>
                 <p className="text-base sm:text-lg text-muted-foreground mb-10 leading-relaxed">
-                  The portable orchestration runtime that runs inside your existing GitLab CI, GitHub Actions, Jenkins, or Kubernetes.
-                  <strong className="text-foreground">No new infrastructure. No always-on servers.</strong> Just a single Go binary.
+                  Drop one Docker image into your pipeline. Get <strong className="text-foreground">AI code review, deployment approvals, and Slack notifications</strong> — without new infrastructure or dedicated agents.
                 </p>
               </FadeUp>
               <FadeUp delay={0.35}>
@@ -73,9 +81,14 @@ export default function Home() {
                 </div>
               </FadeUp>
               <FadeUp delay={0.42}>
-                <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-lg border border-border bg-muted/50 font-mono text-xs text-muted-foreground">
-                  <span className="text-primary">$</span>
-                  <span>curl -sSL .../install.sh | bash</span>
+                <div className="rounded-lg border border-border/60 bg-zinc-950 dark:bg-zinc-900 font-mono text-xs overflow-hidden">
+                  <div className="px-3 py-1.5 bg-zinc-800/60 text-zinc-400 text-[10px] border-b border-white/5">.gitlab-ci.yml</div>
+                  <div className="p-3 space-y-0.5">
+                    <div className="text-sky-400">ai-review:</div>
+                    <div className="text-zinc-300">&nbsp;&nbsp;image: <span className="text-emerald-400">ghcr.io/rajitk13/shiro-automation:latest</span></div>
+                    <div className="text-zinc-300">&nbsp;&nbsp;script:</div>
+                    <div className="text-zinc-300">&nbsp;&nbsp;&nbsp;&nbsp;- <span className="text-amber-300">shiro run -workflow .shiro/workflows/code-review.json</span></div>
+                  </div>
                 </div>
               </FadeUp>
             </div>
@@ -230,54 +243,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Code snippet section */}
-      <section className="py-20 px-6">
+      {/* CI Quick-start */}
+      <section className="py-16 sm:py-24 px-6">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
             <FadeUp>
               <div>
-                <Badge variant="secondary" className="mb-4">Developer-first</Badge>
-                <h2 className="text-4xl font-bold mb-5">Ship AI workflows in minutes, not months</h2>
+                <Badge variant="secondary" className="mb-4">3 lines. That&apos;s it.</Badge>
+                <h2 className="text-4xl font-bold mb-5">In your pipeline in minutes</h2>
                 <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                  No complex orchestration clusters. No YAML hell. Just define your workflow, run it locally, and ship it to CI.
+                  No install step. No binary download. Use the Docker image directly in your GitLab CI or GitHub Actions job.
                 </p>
-                <ul className="space-y-3">
-                  {["Local development: shiro run workflow.json", "GitLab CI: one line with Docker image", "GitHub Actions: container-based execution", "State persistence across CI runs"].map((item) => (
+                <ul className="space-y-3 mb-8">
+                  {["Works in any GitLab CI runner", "Works in any GitHub Actions runner", "State saved to artifacts between stages", "Full docs at shiro-docs.rajit.cc"].map((item) => (
                     <li key={item} className="flex items-center gap-3 text-sm">
                       <span className="w-5 h-5 rounded-full bg-primary/15 text-primary flex items-center justify-center text-xs font-bold">✓</span>
                       <span className="text-muted-foreground">{item}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8">
+                <div className="flex gap-3 flex-wrap">
                   <Button asChild>
-                    <Link href="/getting-started">See the quick start →</Link>
+                    <a href="https://shiro-docs.rajit.cc" target="_blank" rel="noopener noreferrer">Read the docs →</a>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link href="/examples">View examples</Link>
                   </Button>
                 </div>
               </div>
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              <div className="rounded-xl border border-border/60 bg-card overflow-hidden shadow-2xl">
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-border/50 bg-muted/40">
-                  <div className="w-3 h-3 rounded-full bg-red-400/70" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400/70" />
-                  <div className="w-3 h-3 rounded-full bg-green-400/70" />
-                  <span className="ml-2 text-xs text-muted-foreground font-mono">terminal</span>
+              <div className="space-y-4">
+                <div className="rounded-xl border border-border/60 bg-zinc-950 dark:bg-zinc-900 overflow-hidden shadow-2xl">
+                  <div className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/60 border-b border-white/5">
+                    <span className="text-[10px] text-zinc-400 font-mono">🦊 .gitlab-ci.yml</span>
+                  </div>
+                  <pre className="p-4 font-mono text-xs leading-relaxed overflow-x-auto">{`ai-review:
+  image: ghcr.io/rajitk13/shiro-automation:latest
+  variables:
+    GITLAB_TOKEN: $GL_TOKEN
+  script:
+    - shiro run -workflow .shiro/workflows/code-review.json \\
+        -config .shiro/config.yaml -state-store gitlab
+  only:
+    - merge_requests`}</pre>
                 </div>
-                <div className="p-5 font-mono text-sm space-y-2">
-                  <div><span className="text-primary">$</span> <span className="text-foreground">shiro init</span></div>
-                  <div className="text-muted-foreground text-xs">✓ Created .shiro/workflow.json</div>
-                  <div className="text-muted-foreground text-xs">✓ Created .shiro/config.yaml</div>
-                  <div className="mt-3"><span className="text-primary">$</span> <span className="text-foreground">shiro add module ai.review</span></div>
-                  <div className="text-muted-foreground text-xs">✓ Fetching from github.com...</div>
-                  <div className="text-muted-foreground text-xs">✓ Module installed</div>
-                  <div className="mt-3"><span className="text-primary">$</span> <span className="text-foreground">shiro run</span></div>
-                  <div className="text-green-400 text-xs">✓ All steps completed in 87ms</div>
+                <div className="rounded-xl border border-border/60 bg-zinc-950 dark:bg-zinc-900 overflow-hidden shadow-xl">
+                  <div className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/60 border-b border-white/5">
+                    <span className="text-[10px] text-zinc-400 font-mono">🐙 .github/workflows/review.yml</span>
+                  </div>
+                  <pre className="p-4 font-mono text-xs leading-relaxed overflow-x-auto">{`ai-review:
+  runs-on: ubuntu-latest
+  container:
+    image: ghcr.io/rajitk13/shiro-automation:latest
+  steps:
+    - uses: actions/checkout@v4
+    - run: shiro run -workflow .shiro/workflows/code-review.json`}</pre>
                 </div>
               </div>
             </FadeUp>
           </div>
+        </div>
+      </section>
+
+      {/* Workflows */}
+      <section className="py-16 sm:py-24 px-6 bg-muted/20">
+        <div className="container mx-auto max-w-6xl">
+          <FadeUp>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">What you can automate</h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Pre-built workflow examples for the most common CI automation needs.
+              </p>
+            </div>
+          </FadeUp>
+          <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {workflows.map(({ icon, title, desc }) => (
+              <StaggerItem key={title}>
+                <Card className="border-border/60 bg-card/70 h-full">
+                  <CardHeader>
+                    <div className="text-2xl mb-2">{icon}</div>
+                    <CardTitle className="text-base">{title}</CardTitle>
+                    <CardDescription className="text-sm leading-relaxed">{desc}</CardDescription>
+                  </CardHeader>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+          <FadeUp>
+            <div className="text-center mt-10">
+              <Button variant="outline" asChild>
+                <Link href="/examples">See all examples with copy-paste CI configs →</Link>
+              </Button>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
@@ -287,13 +347,13 @@ export default function Home() {
           <div className="container mx-auto max-w-4xl">
             <div className="relative rounded-2xl border border-primary/30 bg-primary/5 p-6 sm:p-12 text-center overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 pointer-events-none" />
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4 relative z-10">Ready to ship AI workflows?</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 relative z-10">Add AI to your CI today</h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto relative z-10">
-                Join platform engineers and DevOps teams automating with Shiro. Open source, Apache 2.0 licensed, production-ready.
+                One Docker image. Works in GitLab CI and GitHub Actions. Open source, Apache 2.0.
               </p>
               <div className="flex flex-wrap gap-4 justify-center relative z-10">
                 <Button size="lg" className="px-8 shadow-lg shadow-primary/25" asChild>
-                  <Link href="/getting-started">Get started →</Link>
+                  <a href="https://shiro-docs.rajit.cc" target="_blank" rel="noopener noreferrer">Read the docs →</a>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <a href="https://github.com/rajitk13/shiro-automation" target="_blank" rel="noopener noreferrer">

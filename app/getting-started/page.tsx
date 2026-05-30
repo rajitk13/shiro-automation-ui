@@ -2,31 +2,43 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 import { FadeUp, StaggerGroup, StaggerItem } from "@/components/Animate";
 
-const installSteps = [
-  { n: "1", label: "Install", desc: "One-line curl install — no package manager needed", dot: "bg-sky-500" },
-  { n: "2", label: "Initialize", desc: "Run shiro init to scaffold your project", dot: "bg-blue-500" },
-  { n: "3", label: "Configure", desc: "Set your AI provider in config.yaml", dot: "bg-cyan-500" },
-  { n: "4", label: "Run", desc: "shiro run — your first workflow is live", dot: "bg-teal-500" },
+const steps = [
+  {
+    n: "1",
+    label: "Add the workflow file",
+    desc: "Create .shiro/workflows/code-review.json in your repo",
+    dot: "bg-sky-500",
+  },
+  {
+    n: "2",
+    label: "Add the config",
+    desc: "Create .shiro/config.yaml with your AI provider settings",
+    dot: "bg-blue-500",
+  },
+  {
+    n: "3",
+    label: "Add the CI job",
+    desc: "Reference the Docker image in your .gitlab-ci.yml or GitHub Actions workflow",
+    dot: "bg-indigo-500",
+  },
 ];
 
 const nextSteps = [
-  { icon: "📚", title: "Full Documentation", desc: "In-depth guides, CLI reference, and API docs", href: "https://shiro-docs.rajit.cc", external: true },
-  { icon: "🏗️", title: "Explore Architecture", desc: "Understand how Shiro orchestrates workflows", href: "/architecture" },
-  { icon: "🧩", title: "Browse Modules", desc: "Discover community modules to extend functionality", href: "/modules" },
-  { icon: "📋", title: "View Examples", desc: "Check out workflow examples for common use cases", href: "/examples" },
-  { icon: "🗺️", title: "See Roadmap", desc: "What's coming next in Shiro's development", href: "/roadmap" },
+  { icon: "📚", title: "Full Documentation", desc: "In-depth guides, CLI reference, workflow schema, and API docs", href: "https://shiro-docs.rajit.cc", external: true },
+  { icon: "📋", title: "View Examples", desc: "Copy-paste CI configs for common workflows", href: "/examples" },
+  { icon: "🧩", title: "Browse Modules", desc: "Slack, Jira, git, AI and more community modules", href: "/modules" },
+  { icon: "🗺️", title: "See Roadmap", desc: "What's coming next in Shiro", href: "/roadmap" },
 ];
 
 export default function GettingStartedPage() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-20 max-w-6xl">
-      <div className="space-y-20">
+    <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-20 max-w-4xl">
+      <div className="space-y-16">
 
         {/* Hero */}
         <motion.div
@@ -35,28 +47,35 @@ export default function GettingStartedPage() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center space-y-5"
         >
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
-            <Badge variant="secondary" className="mb-2 text-sm px-3 py-1">Quick Start</Badge>
-          </motion.div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight gradient-text">Getting Started</h1>
-          <motion.p
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-          >
-            Get up and running with Shiro in minutes. No complex configuration required.
-          </motion.p>
+          <Badge variant="secondary" className="mb-2 text-sm px-3 py-1">Quick Start</Badge>
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight gradient-text">Getting Started</h1>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Shiro runs inside your existing <strong className="text-foreground">GitLab CI</strong> or{" "}
+            <strong className="text-foreground">GitHub Actions</strong> as a Docker image.
+            No install step. No new infrastructure.
+          </p>
+          <div className="flex gap-3 justify-center flex-wrap pt-2">
+            <Button size="lg" asChild>
+              <a href="https://shiro-docs.rajit.cc" target="_blank" rel="noopener noreferrer">
+                Full documentation →
+              </a>
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <Link href="/examples">See CI examples</Link>
+            </Button>
+          </div>
         </motion.div>
 
-        {/* Steps timeline */}
+        {/* 3-step summary */}
         <div className="relative pl-12">
           <motion.div
-            className="absolute left-[15px] top-4 bottom-4 w-px bg-gradient-to-b from-sky-400 via-blue-500 to-teal-500"
+            className="absolute left-[15px] top-4 bottom-4 w-px bg-gradient-to-b from-sky-400 via-blue-500 to-indigo-500"
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
             transition={{ duration: 1.2, ease: "easeInOut", delay: 0.4 }}
             style={{ originY: 0 }}
           />
-          {installSteps.map((step, i) => (
+          {steps.map((step, i) => (
             <motion.div
               key={step.label}
               className="relative flex items-center gap-5 mb-5"
@@ -77,261 +96,23 @@ export default function GettingStartedPage() {
           ))}
         </div>
 
-        <Separator />
-
-        {/* Installation */}
-        <section>
-          <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">Installation</h2>
-          </FadeUp>
-          <FadeUp delay={0.1}>
-            <Tabs defaultValue="auto" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="auto">Auto-detect</TabsTrigger>
-                <TabsTrigger value="download">Download</TabsTrigger>
-                <TabsTrigger value="build">Build from Source</TabsTrigger>
-                <TabsTrigger value="docker">Docker</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="auto" className="mt-6">
-                <Card className="border-border/60">
-                  <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">⚡</span>
-                      <div>
-                        <CardTitle>Auto-detect Installation</CardTitle>
-                        <CardDescription>Automatically detects your platform and installs the correct binary</CardDescription>
-                      </div>
-                      <Badge variant="secondary" className="ml-auto">Recommended</Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm">
-                      <code>curl -sSL https://raw.githubusercontent.com/rajitk13/shiro-automation/master/scripts/install-auto.sh | bash</code>
-                    </pre>
-                    <p className="text-sm text-muted-foreground mt-4">
-                      This script automatically detects your platform and installs the correct binary to <code className="bg-muted px-1 rounded">/usr/local/bin/shiro</code>.
-                    </p>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="download" className="mt-6">
-                <Card className="border-border/60">
-                  <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">📦</span>
-                      <div>
-                        <CardTitle>Download Pre-built Binaries</CardTitle>
-                        <CardDescription>Download the binary for your platform from GitHub releases</CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    {[
-                      { label: "Linux", cmd: "curl -LO https://github.com/rajitk13/shiro-automation/releases/latest/download/shiro-linux-amd64" },
-                      { label: "macOS (Intel)", cmd: "curl -LO https://github.com/rajitk13/shiro-automation/releases/latest/download/shiro-darwin-amd64" },
-                      { label: "macOS (Apple Silicon)", cmd: "curl -LO https://github.com/rajitk13/shiro-automation/releases/latest/download/shiro-darwin-arm64" },
-                      { label: "Windows", cmd: "curl -LO https://github.com/rajitk13/shiro-automation/releases/latest/download/shiro-windows-amd64.exe" },
-                    ].map((p) => (
-                      <div key={p.label}>
-                        <h4 className="font-semibold mb-1.5 text-sm">{p.label}</h4>
-                        <pre className="bg-muted p-3 rounded-lg overflow-x-auto text-xs"><code>{p.cmd}</code></pre>
-                      </div>
-                    ))}
-                    <div className="bg-muted p-4 rounded-lg">
-                      <p className="text-sm">After downloading, make it executable and add to PATH:</p>
-                      <pre className="mt-2 text-xs"><code>chmod +x shiro-[platform] &amp;&amp; sudo mv shiro-[platform] /usr/local/bin/shiro</code></pre>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="build" className="mt-6">
-                <Card className="border-border/60">
-                  <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">🔧</span>
-                      <div>
-                        <CardTitle>Build from Source</CardTitle>
-                        <CardDescription>Build Shiro from source code — requires Go 1.21+</CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm">
-                      <code>git clone https://github.com/rajitk13/shiro-automation.git
-cd shiro-automation
-go build -o shiro ./cmd/runtime
-sudo mv shiro /usr/local/bin/shiro</code>
-                    </pre>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="docker" className="mt-6">
-                <Card className="border-border/60">
-                  <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">🐳</span>
-                      <div>
-                        <CardTitle>Docker</CardTitle>
-                        <CardDescription>Use Shiro in a Docker container</CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm">
-                      <code>docker pull ghcr.io/rajitk13/shiro-automation:latest
-docker run --rm -v $(pwd):/workspace ghcr.io/rajitk13/shiro-automation:latest shiro run</code>
-                    </pre>
-                    <p className="text-sm text-muted-foreground mt-4">
-                      Mount your working directory to <code className="bg-muted px-1 rounded">/workspace</code> to access your workflows.
-                    </p>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
-          </FadeUp>
-        </section>
-
-        <Separator />
-
-        {/* Initialize & Run */}
-        <section>
-          <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">Initialize &amp; Run</h2>
-          </FadeUp>
-          <StaggerGroup className="grid md:grid-cols-2 gap-6">
-            <StaggerItem>
-              <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">🚀</span>
-                    <div>
-                      <CardTitle>Initialize Project</CardTitle>
-                      <CardDescription>Create a new Shiro project in seconds</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm">
-                    <code>cd your-project
-shiro init</code>
-                  </pre>
-                  <div className="bg-muted p-4 rounded-lg overflow-x-auto">
-                    <p className="text-xs text-muted-foreground mb-2 font-medium uppercase tracking-wide">Creates:</p>
-                    <pre className="text-xs font-mono whitespace-pre"><code>{`.shiro/
-├── workflow.json
-├── config.yaml
-├── modules/
-│   └── registry.yaml
-└── workflows/`}</code></pre>
-                  </div>
-                  <div className="bg-primary/10 p-4 rounded-lg border border-primary/20 text-sm">
-                    <strong>Tip:</strong> Use <code className="bg-muted px-1 rounded">shiro init -template code-review</code> to scaffold an AI-powered GitLab MR review workflow.
-                  </div>
-                </CardContent>
-              </Card>
-            </StaggerItem>
-
-            <StaggerItem>
-              <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">▶️</span>
-                    <div>
-                      <CardTitle>Run Workflows</CardTitle>
-                      <CardDescription>Execute with auto-detection</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm"><code>shiro run</code></pre>
-                  <div className="space-y-2">
-                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Other commands:</p>
-                    <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
-                      <code>{`# Specific workflow
-shiro run -workflow examples/simple-test.json
-
-# Custom config
-shiro run -config configs/models.yaml
-
-# Custom .shiro dir
-shiro run -shiro-dir /path/to/.shiro`}</code>
-                    </pre>
-                  </div>
-                </CardContent>
-              </Card>
-            </StaggerItem>
-          </StaggerGroup>
-        </section>
-
-        <Separator />
-
-        {/* Module Management */}
-        <section>
-          <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">Module Management</h2>
-            <Card className="border-border/60">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">🧩</span>
-                  <div>
-                    <CardTitle>Add and Manage Modules</CardTitle>
-                    <CardDescription>Extend Shiro with community modules</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm">
-                  <code>{`# Add a module (auto-discovers from GitHub)
-shiro add module jira
-
-# Add module from GitHub URL
-shiro add module github.com/user/custom-module
-
-# Search for modules
-shiro search module slack
-
-# List installed
-shiro list modules
-
-# Remove a module
-shiro remove module jira`}</code>
-                </pre>
-                <div className="bg-primary/10 p-4 rounded-lg border border-primary/20 text-sm flex flex-wrap items-center gap-1">
-                  <strong>Tip:</strong>
-                  <span>Visit the <Link href="/modules" className="text-primary underline">Modules</Link> page to discover community modules tagged with</span>
-                  <Badge className="ml-1">shiro-automation-module</Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </FadeUp>
-        </section>
-
-        <Separator />
-
-        {/* GitLab CI */}
-        <section>
-          <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">GitLab CI Integration</h2>
+        {/* GitLab CI snippet */}
+        <FadeUp>
+          <div>
+            <h2 className="text-2xl font-bold mb-6">GitLab CI</h2>
             <Card className="border-border/60">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">🦊</span>
                   <div>
-                    <CardTitle>Integrate with GitLab CI/CD</CardTitle>
-                    <CardDescription>Use Shiro in your GitLab pipelines with Docker image</CardDescription>
+                    <CardTitle>Add to .gitlab-ci.yml</CardTitle>
+                    <CardDescription>Use the Docker image — no install step needed</CardDescription>
                   </div>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
-                  <code>{`stages:
-  - review
-
-ai-review:
+                  <code>{`ai-review:
   stage: review
   image: ghcr.io/rajitk13/shiro-automation:latest
   variables:
@@ -350,22 +131,20 @@ ai-review:
                 </p>
               </CardContent>
             </Card>
-          </FadeUp>
-        </section>
+          </div>
+        </FadeUp>
 
-        <Separator />
-
-        {/* GitHub Actions */}
-        <section>
-          <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">GitHub Actions Integration</h2>
+        {/* GitHub Actions snippet */}
+        <FadeUp>
+          <div>
+            <h2 className="text-2xl font-bold mb-6">GitHub Actions</h2>
             <Card className="border-border/60">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">🐙</span>
                   <div>
-                    <CardTitle>Integrate with GitHub Actions</CardTitle>
-                    <CardDescription>Use Shiro in your GitHub workflows with Docker image</CardDescription>
+                    <CardTitle>Add to .github/workflows/review.yml</CardTitle>
+                    <CardDescription>Container-based execution — same Docker image</CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -378,10 +157,23 @@ ai-review:
                 </p>
               </CardContent>
             </Card>
-          </FadeUp>
-        </section>
+          </div>
+        </FadeUp>
 
-        <Separator />
+        {/* Docs callout */}
+        <FadeUp>
+          <div className="rounded-xl border border-primary/30 bg-primary/5 p-6 sm:p-8">
+            <h2 className="text-xl font-bold mb-2">Need more detail?</h2>
+            <p className="text-muted-foreground mb-4">
+              Workflow schema, config options, CLI reference, module docs, and advanced guides are all in the full documentation.
+            </p>
+            <Button asChild>
+              <a href="https://shiro-docs.rajit.cc" target="_blank" rel="noopener noreferrer">
+                Open documentation ↗
+              </a>
+            </Button>
+          </div>
+        </FadeUp>
 
         {/* Next Steps */}
         <section>

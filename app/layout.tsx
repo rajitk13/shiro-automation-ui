@@ -106,14 +106,11 @@ export default function RootLayout({
                 </Link>
                 <div className="hidden md:flex items-center gap-1">
                   {[
-                    ["Architecture", "/architecture"],
                     ["Get Started", "/getting-started"],
-                    ["Tech Stack", "/tech-stack"],
+                    ["Examples", "/examples"],
                     ["Modules", "/modules"],
                     ["Integrations", "/integrations"],
-                    ["Examples", "/examples"],
                     ["Releases", "/releases"],
-                    ["Commits", "/commits"],
                     ["Roadmap", "/roadmap"],
                   ].map(([label, href]) => (
                     <Link

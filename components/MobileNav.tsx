@@ -7,14 +7,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navLinks = [
-  ["Architecture", "/architecture"],
   ["Get Started", "/getting-started"],
-  ["Tech Stack", "/tech-stack"],
+  ["Examples", "/examples"],
   ["Modules", "/modules"],
   ["Integrations", "/integrations"],
-  ["Examples", "/examples"],
   ["Releases", "/releases"],
-  ["Commits", "/commits"],
   ["Roadmap", "/roadmap"],
 ];
 
