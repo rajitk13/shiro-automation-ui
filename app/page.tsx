@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <div className="flex flex-col overflow-hidden">
       {/* Hero */}
-      <section className="relative py-24 px-6 overflow-hidden">
+      <section className="relative py-12 sm:py-20 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0 dot-bg opacity-40" />
         <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-3xl pointer-events-none" />
 
@@ -50,9 +50,12 @@ export default function Home() {
             {/* Left: text */}
             <div>
               <FadeIn delay={0.05}>
-                <Badge className="mb-6 px-4 py-1.5 text-sm font-medium">
-                  🦊 GitLab CI &nbsp;·&nbsp; 🐙 GitHub Actions &nbsp;·&nbsp; Jenkins &nbsp;·&nbsp; any runner
-                </Badge>
+                <div className="mb-6 flex flex-wrap gap-1.5">
+                  <Badge variant="secondary" className="text-xs">🦊 GitLab CI</Badge>
+                  <Badge variant="secondary" className="text-xs">🐙 GitHub Actions</Badge>
+                  <Badge variant="secondary" className="text-xs">Jenkins</Badge>
+                  <Badge variant="secondary" className="text-xs">any runner</Badge>
+                </div>
               </FadeIn>
               <FadeUp delay={0.15}>
                 <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
@@ -83,18 +86,18 @@ export default function Home() {
               <FadeUp delay={0.42}>
                 <div className="rounded-lg border border-border/60 bg-zinc-950 dark:bg-zinc-900 font-mono text-xs overflow-hidden">
                   <div className="px-3 py-1.5 bg-zinc-800/60 text-zinc-400 text-[10px] border-b border-white/5">.gitlab-ci.yml</div>
-                  <div className="p-3 space-y-0.5">
-                    <div className="text-sky-400">ai-review:</div>
-                    <div className="text-zinc-300">&nbsp;&nbsp;image: <span className="text-emerald-400">ghcr.io/rajitk13/shiro-automation:latest</span></div>
-                    <div className="text-zinc-300">&nbsp;&nbsp;script:</div>
-                    <div className="text-zinc-300">&nbsp;&nbsp;&nbsp;&nbsp;- <span className="text-amber-300">shiro run -workflow .shiro/workflows/code-review.json</span></div>
+                  <div className="p-3 space-y-0.5 overflow-x-auto">
+                    <div className="text-sky-400 whitespace-nowrap">ai-review:</div>
+                    <div className="text-zinc-300 whitespace-nowrap">&nbsp;&nbsp;image: <span className="text-emerald-400">ghcr.io/rajitk13/shiro-automation:latest</span></div>
+                    <div className="text-zinc-300 whitespace-nowrap">&nbsp;&nbsp;script:</div>
+                    <div className="text-zinc-300 whitespace-nowrap">&nbsp;&nbsp;&nbsp;&nbsp;- <span className="text-amber-300">shiro run -workflow .shiro/workflows/code-review.json</span></div>
                   </div>
                 </div>
               </FadeUp>
             </div>
 
-            {/* Right: live terminal */}
-            <FadeUp delay={0.2}>
+            {/* Right: live terminal — hidden on mobile to keep hero clean */}
+            <FadeUp delay={0.2} className="hidden lg:block">
               <TerminalAnimation />
             </FadeUp>
 
@@ -119,7 +122,7 @@ export default function Home() {
       </FadeIn>
 
       {/* Features */}
-      <section className="py-16 sm:py-24 px-6">
+      <section className="py-16 sm:py-24 px-4 sm:px-6">
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
@@ -149,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* Target Audience */}
-      <section className="py-16 sm:py-24 px-6 bg-muted/20">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 bg-muted/20">
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
@@ -182,7 +185,7 @@ export default function Home() {
       </section>
 
       {/* Differentiators */}
-      <section className="py-16 sm:py-24 px-6">
+      <section className="py-16 sm:py-24 px-4 sm:px-6">
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
@@ -244,13 +247,13 @@ export default function Home() {
       </section>
 
       {/* CI Quick-start */}
-      <section className="py-16 sm:py-24 px-6">
+      <section className="py-16 sm:py-24 px-4 sm:px-6">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-start">
             <FadeUp>
               <div>
                 <Badge variant="secondary" className="mb-4">3 lines. That&apos;s it.</Badge>
-                <h2 className="text-4xl font-bold mb-5">In your pipeline in minutes</h2>
+                <h2 className="text-2xl sm:text-4xl font-bold mb-5">In your pipeline in minutes</h2>
                 <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
                   No install step. No binary download. Use the Docker image directly in your GitLab CI or GitHub Actions job.
                 </p>
@@ -308,7 +311,7 @@ export default function Home() {
       </section>
 
       {/* Workflows */}
-      <section className="py-16 sm:py-24 px-6 bg-muted/20">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 bg-muted/20">
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
@@ -342,7 +345,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 sm:py-24 px-6">
+      <section className="py-16 sm:py-24 px-4 sm:px-6">
         <FadeUp>
           <div className="container mx-auto max-w-4xl">
             <div className="relative rounded-2xl border border-primary/30 bg-primary/5 p-6 sm:p-12 text-center overflow-hidden">
