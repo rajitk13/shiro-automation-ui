@@ -28,7 +28,7 @@ export default function ExamplesPage() {
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
             <Badge variant="secondary" className="mb-2 text-sm px-3 py-1">Real-World Usage</Badge>
           </motion.div>
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight gradient-text">Examples</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight gradient-text">Examples</h1>
           <motion.p
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
             className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
@@ -72,7 +72,7 @@ export default function ExamplesPage() {
             <h2 className="text-3xl font-bold mb-8">GitLab CI Configurations</h2>
           </FadeUp>
           <Tabs defaultValue="mr-review" className="w-full">
-            <TabsList className="grid w-full grid-cols-6">
+            <TabsList className="flex flex-wrap h-auto gap-1 justify-start">
               <TabsTrigger value="mr-review">MR Review</TabsTrigger>
               <TabsTrigger value="gh-pr-review">GH PR Review</TabsTrigger>
               <TabsTrigger value="approval">Approval</TabsTrigger>
@@ -90,7 +90,7 @@ export default function ExamplesPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                     <code>{`stages:
   - review
 
@@ -128,7 +128,7 @@ ai-mr-review:
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                     <code>{"name: AI PR Review\n\non:\n  pull_request:\n    types: [opened, synchronize, reopened]\n\njobs:\n  ai-review:\n    runs-on: ubuntu-latest\n    container:\n      image: ghcr.io/rajitk13/shiro-automation:latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n      - name: Run AI Review\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}\n        run: shiro run -workflow .shiro/workflows/github-mr-review.json -config .shiro/config.yaml"}</code>
                   </pre>
                   <div className="mt-4 space-y-2">
@@ -151,7 +151,7 @@ ai-mr-review:
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                     <code>{`stages:
   - approval
 
@@ -207,7 +207,7 @@ approval-resume:
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                     <code>{`stages:
   - review
 
@@ -240,7 +240,7 @@ push-notification:
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                     <code>{"name: Push Notification\n\non:\n  push:\n    branches:\n      - main\n      - master\n\njobs:\n  notify:\n    runs-on: ubuntu-latest\n    container:\n      image: ghcr.io/rajitk13/shiro-automation:latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n      - name: Send Notification\n        env:\n          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}\n        run: shiro run -workflow .shiro/workflows/github-push-notification.json -config .shiro/config.yaml"}</code>
                   </pre>
                   <div className="mt-4 space-y-2">
@@ -263,7 +263,7 @@ push-notification:
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                     <code>{`stages:
   - test
 
@@ -299,7 +299,7 @@ test-jira:
             <h2 className="text-3xl font-bold mb-8">Workflow Definitions</h2>
           </FadeUp>
           <Tabs defaultValue="simple" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="flex flex-wrap h-auto gap-1 justify-start">
               <TabsTrigger value="simple">Simple Test</TabsTrigger>
               <TabsTrigger value="print">Print Example</TabsTrigger>
               <TabsTrigger value="ai">AI Generate</TabsTrigger>
@@ -315,7 +315,7 @@ test-jira:
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                     <code>{`{
   "name": "simple-test",
   "description": "Simple test workflow using print module",
@@ -360,7 +360,7 @@ test-jira:
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                     <code>{`{
   "name": "print-example",
   "steps": [
@@ -405,7 +405,7 @@ test-jira:
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                     <code>{`{
   "name": "ai-example",
   "steps": [
@@ -445,7 +445,7 @@ test-jira:
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                  <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                     <code>{`{
   "name": "slack-example",
   "steps": [
@@ -483,7 +483,7 @@ test-jira:
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                   <code>{`models:
   # Ollama local models
   codellama:
