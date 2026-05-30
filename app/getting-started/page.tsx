@@ -111,7 +111,7 @@ export default function GettingStartedPage() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                   <code>{`ai-review:
   stage: review
   image: ghcr.io/rajitk13/shiro-automation:latest
@@ -149,7 +149,7 @@ export default function GettingStartedPage() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
+                <pre className="bg-muted p-4 rounded-lg text-xs whitespace-pre-wrap break-all">
                   <code>{"name: AI PR Review\n\non:\n  pull_request:\n    types: [opened, synchronize, reopened]\n\njobs:\n  ai-review:\n    runs-on: ubuntu-latest\n    container:\n      image: ghcr.io/rajitk13/shiro-automation:latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n      - name: Run AI Review\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}\n        run: shiro run -workflow .shiro/workflows/github-mr-review.json -config .shiro/config.yaml"}</code>
                 </pre>
                 <p className="text-sm text-muted-foreground">

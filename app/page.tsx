@@ -38,11 +38,11 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="flex flex-col overflow-hidden">
+    <div className="flex flex-col w-full">
       {/* Hero */}
       <section className="relative py-12 sm:py-20 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0 dot-bg opacity-40" />
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-primary/8 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto max-w-6xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
@@ -84,13 +84,13 @@ export default function Home() {
                 </div>
               </FadeUp>
               <FadeUp delay={0.42}>
-                <div className="rounded-lg border border-border/60 bg-zinc-950 dark:bg-zinc-900 font-mono text-xs overflow-hidden">
+                <div className="rounded-lg border border-border/60 bg-zinc-950 dark:bg-zinc-900 font-mono text-xs">
                   <div className="px-3 py-1.5 bg-zinc-800/60 text-zinc-400 text-[10px] border-b border-white/5">.gitlab-ci.yml</div>
-                  <div className="p-3 space-y-0.5 overflow-x-auto">
-                    <div className="text-sky-400 whitespace-nowrap">ai-review:</div>
-                    <div className="text-zinc-300 whitespace-nowrap">&nbsp;&nbsp;image: <span className="text-emerald-400">ghcr.io/rajitk13/shiro-automation:latest</span></div>
-                    <div className="text-zinc-300 whitespace-nowrap">&nbsp;&nbsp;script:</div>
-                    <div className="text-zinc-300 whitespace-nowrap">&nbsp;&nbsp;&nbsp;&nbsp;- <span className="text-amber-300">shiro run -workflow .shiro/workflows/code-review.json</span></div>
+                  <div className="p-3 space-y-0.5">
+                    <div className="text-sky-400">ai-review:</div>
+                    <div className="text-zinc-300 break-all">&nbsp;&nbsp;image: <span className="text-emerald-400">ghcr.io/rajitk13/shiro-automation:latest</span></div>
+                    <div className="text-zinc-300">&nbsp;&nbsp;script:</div>
+                    <div className="text-zinc-300 break-all">&nbsp;&nbsp;&nbsp;&nbsp;- <span className="text-amber-300">shiro run -workflow .shiro/workflows/code-review.json</span></div>
                   </div>
                 </div>
               </FadeUp>
@@ -278,11 +278,11 @@ export default function Home() {
 
             <FadeUp delay={0.2}>
               <div className="space-y-4">
-                <div className="rounded-xl border border-border/60 bg-zinc-950 dark:bg-zinc-900 overflow-hidden shadow-2xl">
+                <div className="rounded-xl border border-border/60 bg-zinc-950 dark:bg-zinc-900 overflow-hidden shadow-2xl max-w-full">
                   <div className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/60 border-b border-white/5">
                     <span className="text-[10px] text-zinc-400 font-mono">🦊 .gitlab-ci.yml</span>
                   </div>
-                  <pre className="p-4 font-mono text-xs leading-relaxed overflow-x-auto">{`ai-review:
+                  <pre className="p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap break-all">{`ai-review:
   image: ghcr.io/rajitk13/shiro-automation:latest
   variables:
     GITLAB_TOKEN: $GL_TOKEN
@@ -292,11 +292,11 @@ export default function Home() {
   only:
     - merge_requests`}</pre>
                 </div>
-                <div className="rounded-xl border border-border/60 bg-zinc-950 dark:bg-zinc-900 overflow-hidden shadow-xl">
+                <div className="rounded-xl border border-border/60 bg-zinc-950 dark:bg-zinc-900 overflow-hidden shadow-xl max-w-full">
                   <div className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/60 border-b border-white/5">
                     <span className="text-[10px] text-zinc-400 font-mono">🐙 .github/workflows/review.yml</span>
                   </div>
-                  <pre className="p-4 font-mono text-xs leading-relaxed overflow-x-auto">{`ai-review:
+                  <pre className="p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap break-all">{`ai-review:
   runs-on: ubuntu-latest
   container:
     image: ghcr.io/rajitk13/shiro-automation:latest
