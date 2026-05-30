@@ -36,10 +36,10 @@ export default function RoadmapPage() {
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
             <Badge variant="secondary" className="mb-2 text-sm px-3 py-1">What&apos;s Next</Badge>
           </motion.div>
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight gradient-text">Roadmap</h1>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight gradient-text">Roadmap</h1>
           <motion.p
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
             Future plans and development roadmap for Shiro Automation.
           </motion.p>
@@ -53,7 +53,7 @@ export default function RoadmapPage() {
               <Badge className="text-sm">Stable</Badge>
             </div>
           </FadeUp>
-          <StaggerGroup className="grid md:grid-cols-2 gap-5">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {currentFeatures.map((f) => (
               <StaggerItem key={f.title}>
                 <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
@@ -83,7 +83,7 @@ export default function RoadmapPage() {
         {/* Planned Features — animated timeline */}
         <section>
           <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">Planned Features</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8">Planned Features</h2>
           </FadeUp>
           <div className="relative pl-12">
             <motion.div
@@ -125,9 +125,9 @@ export default function RoadmapPage() {
         {/* Community */}
         <section>
           <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">Community Contributions</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8">Community Contributions</h2>
           </FadeUp>
-          <StaggerGroup className="grid md:grid-cols-2 gap-5">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {[
               { icon: "🧩", title: "Build Modules", desc: "Create custom modules for your favorite tools. Add the shiro-automation-module topic to your GitHub repo to appear in the marketplace." },
               { icon: "🐛", title: "Report Issues", desc: "Found a bug or have a feature request? Open an issue on GitHub to help improve Shiro.", href: "https://github.com/rajitk13/shiro-automation/issues" },

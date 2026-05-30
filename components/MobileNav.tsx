@@ -83,7 +83,7 @@ export function MobileNav() {
                   onClick={() => setOpen(false)}
                   className="px-3 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                 >
-                  Docs ↗
+                  Docs
                 </a>
                 <a
                   href="https://github.com/rajitk13/shiro-automation"
@@ -92,7 +92,7 @@ export function MobileNav() {
                   onClick={() => setOpen(false)}
                   className="px-3 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                 >
-                  GitHub ↗
+                  GitHub
                 </a>
               </nav>
             </motion.div>

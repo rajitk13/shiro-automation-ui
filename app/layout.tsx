@@ -128,7 +128,7 @@ export default function RootLayout({
                     rel="noopener noreferrer"
                     className="px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-all"
                   >
-                    Docs ↗
+                    Docs
                   </a>
                   <a
                     href="https://github.com/rajitk13/shiro-automation"
@@ -136,7 +136,7 @@ export default function RootLayout({
                     rel="noopener noreferrer"
                     className="px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-all"
                   >
-                    GitHub ↗
+                    GitHub
                   </a>
                   <ThemeToggle />
                 </div>
@@ -147,23 +147,21 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <FloatingAIButton />
           <footer className="border-t border-border/60 py-8 mt-16">
-            <div className="container mx-auto px-6">
-              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div className="flex items-center gap-3">
+            <div className="container mx-auto px-4 sm:px-6">
+              <div className="flex flex-col gap-4 text-center md:flex-row md:justify-between md:items-center md:text-left">
+                <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 justify-center md:justify-start">
                   <Logo size={24} />
-                  <span className="text-sm text-muted-foreground">
-                    © 2026 Shiro Automation. Apache 2.0 license.
-                  </span>
+                  <span className="text-sm text-muted-foreground">© 2026 Shiro Automation · Apache 2.0</span>
                   <a
                     href="https://shiro-docs.rajit.cc"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                    className="text-xs text-primary hover:underline transition-colors whitespace-nowrap"
                   >
-                    Documentation ↗
+                    Documentation
                   </a>
                 </div>
-                <div className="flex flex-wrap items-center gap-5 justify-center">
+                <div className="flex items-center gap-4 justify-center md:justify-end flex-wrap">
                   <span className="text-sm text-muted-foreground">Built by</span>
                   <a
                     href="https://www.linkedin.com/in/rajitkuthiala/"
@@ -179,7 +177,7 @@ export default function RootLayout({
                     rel="noopener noreferrer"
                     className="text-xs text-muted-foreground hover:text-primary transition-colors"
                   >
-                    LinkedIn ↗
+                    LinkedIn
                   </a>
                   <a
                     href="https://github.com/rajitk13"
@@ -187,7 +185,7 @@ export default function RootLayout({
                     rel="noopener noreferrer"
                     className="text-xs text-muted-foreground hover:text-primary transition-colors"
                   >
-                    GitHub ↗
+                    GitHub
                   </a>
                 </div>
               </div>

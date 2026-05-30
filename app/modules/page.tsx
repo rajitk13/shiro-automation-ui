@@ -43,7 +43,7 @@ export default function ModulesPage() {
         <section>
           <FadeUp delay={0.1}>
             <div className="mb-6">
-              <h2 className="text-3xl font-bold mb-2">Available Modules</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-2">Available Modules</h2>
               <p className="text-muted-foreground">
                 {loading ? "Loading modules from GitHub..." : `Found ${modules.length} modules from GitHub`}
                 {error && <span className="text-destructive ml-2">({error})</span>}
@@ -79,7 +79,7 @@ export default function ModulesPage() {
               </Card>
             </FadeUp>
           ) : (
-            <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {modules.map((module: GitHubRepo) => (
                 <StaggerItem key={module.id}>
                   <Card className="group relative overflow-hidden border-border/60 bg-card/70 glass-card flex flex-col h-full transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10">
@@ -139,8 +139,8 @@ export default function ModulesPage() {
         {/* Built-in Modules */}
         <section>
           <FadeUp delay={0.3}>
-            <h2 className="text-3xl font-bold mb-8">Built-in Modules</h2>
-            <StaggerGroup className="grid md:grid-cols-2 gap-6">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8">Built-in Modules</h2>
+            <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 { name: "print", desc: "Console output with log levels", detail: "Print messages to console with different log levels (info, debug, warning, error) and formatting options." },
                 { name: "slack.notify", desc: "Slack notifications", detail: "Send notifications to Slack channels via webhooks. Supports custom messages, channels, and bot configuration." },
@@ -167,7 +167,7 @@ export default function ModulesPage() {
         {/* How to Create Modules */}
         <section>
           <FadeUp delay={0.4}>
-            <h2 className="text-3xl font-bold mb-6">Create Your Own Module</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">Create Your Own Module</h2>
             <Card className="border-border/60 glass-card">
               <CardHeader>
                 <CardTitle>Contribute to the Community</CardTitle>

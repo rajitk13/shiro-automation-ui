@@ -101,12 +101,21 @@
 
 * {
   border-color: hsl(var(--border));
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .gradient-text {

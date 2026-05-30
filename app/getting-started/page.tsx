@@ -49,7 +49,7 @@ export default function GettingStartedPage() {
         >
           <Badge variant="secondary" className="mb-2 text-sm px-3 py-1">Quick Start</Badge>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight gradient-text">Getting Started</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Shiro runs inside your existing <strong className="text-foreground">GitLab CI</strong> or{" "}
             <strong className="text-foreground">GitHub Actions</strong> as a Docker image.
             No install step. No new infrastructure.
@@ -178,9 +178,9 @@ export default function GettingStartedPage() {
         {/* Next Steps */}
         <section>
           <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">Next Steps</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8">Next Steps</h2>
           </FadeUp>
-          <StaggerGroup className="grid md:grid-cols-2 gap-6">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {nextSteps.map((item) => (
               <StaggerItem key={item.title}>
                 {"external" in item && item.external ? (

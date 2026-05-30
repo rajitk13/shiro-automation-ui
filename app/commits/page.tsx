@@ -100,9 +100,9 @@ export default function CommitsPage() {
                         href={commit.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-primary hover:underline whitespace-nowrap"
+                        className="text-sm text-primary hover:underline"
                       >
-                        View on GitHub ↗
+                        View on GitHub
                       </a>
                     </div>
                   </CardHeader>

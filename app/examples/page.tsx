@@ -31,7 +31,7 @@ export default function ExamplesPage() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight gradient-text">Examples</h1>
           <motion.p
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
             Practical examples and configurations for common use cases.
           </motion.p>
@@ -40,9 +40,9 @@ export default function ExamplesPage() {
         {/* Quick reference */}
         <section>
           <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">What&apos;s Available</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8">What&apos;s Available</h2>
           </FadeUp>
-          <StaggerGroup className="grid md:grid-cols-2 gap-5">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {quickRef.map((item) => (
               <StaggerItem key={item.title}>
                 <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
@@ -69,7 +69,7 @@ export default function ExamplesPage() {
         {/* GitLab CI Examples */}
         <section>
           <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">GitLab CI Configurations</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8">GitLab CI Configurations</h2>
           </FadeUp>
           <Tabs defaultValue="mr-review" className="w-full">
             <TabsList className="flex flex-wrap h-auto gap-1 justify-start">
@@ -296,7 +296,7 @@ test-jira:
         {/* Workflow Examples */}
         <section>
           <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">Workflow Definitions</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8">Workflow Definitions</h2>
           </FadeUp>
           <Tabs defaultValue="simple" className="w-full">
             <TabsList className="flex flex-wrap h-auto gap-1 justify-start">
@@ -472,7 +472,7 @@ test-jira:
         {/* Configuration Examples */}
         <section>
           <FadeUp>
-            <h2 className="text-3xl font-bold mb-8">Configuration Examples</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8">Configuration Examples</h2>
           </FadeUp>
           <FadeUp delay={0.1}>
             <Card className="border-border/60">

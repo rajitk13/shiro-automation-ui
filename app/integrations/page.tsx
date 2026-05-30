@@ -38,10 +38,10 @@ export default function IntegrationsPage() {
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
             <Badge variant="secondary" className="mb-2 text-sm px-3 py-1">Integrations</Badge>
           </motion.div>
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight gradient-text">Integrations</h1>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight gradient-text">Integrations</h1>
           <motion.p
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
             Connect Shiro with your existing CI/CD platforms and AI providers.
           </motion.p>
@@ -50,10 +50,10 @@ export default function IntegrationsPage() {
         {/* CI Platforms */}
         <section>
           <FadeUp>
-            <h2 className="text-3xl font-bold mb-2">CI/CD Platforms</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-2">CI/CD Platforms</h2>
             <p className="text-muted-foreground mb-8">Runs inside your existing runners — no new infrastructure required.</p>
           </FadeUp>
-          <StaggerGroup className="grid md:grid-cols-3 gap-5">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {integrations.map((c) => (
               <StaggerItem key={c.title}>
                 <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">
@@ -78,10 +78,10 @@ export default function IntegrationsPage() {
         {/* AI Providers */}
         <section>
           <FadeUp>
-            <h2 className="text-3xl font-bold mb-2">AI Providers</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-2">AI Providers</h2>
             <p className="text-muted-foreground mb-8">First-class support for multiple AI providers — local or cloud.</p>
           </FadeUp>
-          <StaggerGroup className="grid md:grid-cols-3 gap-5">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {aiProviders.map((p) => (
               <StaggerItem key={p.title}>
                 <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200">

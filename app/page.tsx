@@ -126,14 +126,14 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Why teams choose Shiro</h2>
-              <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
-                Shiro is <strong className="text-foreground">not another CI platform</strong> — it's the AI orchestration layer that runs inside your existing infrastructure. No SaaS, no lock-in, no orchestration clusters.
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Why teams choose Shiro</h2>
+              <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Shiro is <strong className="text-foreground">not another CI platform</strong> — it&apos;s the AI orchestration layer that runs inside your existing infrastructure. No SaaS, no lock-in, no orchestration clusters.
               </p>
             </div>
           </FadeUp>
 
-          <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map(({ icon, title, desc }) => (
               <StaggerItem key={title}>
                 <GlowCard>
@@ -156,14 +156,14 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Built for modern infrastructure teams</h2>
-              <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Built for modern infrastructure teams</h2>
+              <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Shiro is designed for teams who need AI automation without the operational overhead of dedicated orchestration infrastructure.
               </p>
             </div>
           </FadeUp>
 
-          <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               { icon: "🏗️", title: "Platform Engineers", desc: "Build internal developer platforms with AI workflows that run in your existing CI." },
               { icon: "🚀", title: "DevOps Teams", desc: "Automate deployments, approvals, and release notes without new infrastructure." },
@@ -189,14 +189,14 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Not just another CI tool</h2>
-              <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Not just another CI tool</h2>
+              <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Shiro fills the gap between CI platforms and AI orchestration — without the complexity of dedicated infrastructure.
               </p>
             </div>
           </FadeUp>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               {
                 title: "vs Jenkins/GitLab CI",
@@ -315,13 +315,13 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <FadeUp>
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">What you can automate</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">What you can automate</h2>
+              <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
                 Pre-built workflow examples for the most common CI automation needs.
               </p>
             </div>
           </FadeUp>
-          <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {workflows.map(({ icon, title, desc }) => (
               <StaggerItem key={title}>
                 <Card className="border-border/60 bg-card/70 h-full">
