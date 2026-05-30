@@ -126,6 +126,14 @@ export default function RootLayout({
                   ))}
                   <div className="w-px h-4 bg-border mx-2" />
                   <a
+                    href="https://shiro-docs.rajit.cc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-all"
+                  >
+                    Docs ↗
+                  </a>
+                  <a
                     href="https://github.com/rajitk13/shiro-automation"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -149,6 +157,14 @@ export default function RootLayout({
                   <span className="text-sm text-muted-foreground">
                     © 2026 Shiro Automation. Apache 2.0 license.
                   </span>
+                  <a
+                    href="https://shiro-docs.rajit.cc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    Documentation ↗
+                  </a>
                 </div>
                 <div className="flex flex-wrap items-center gap-5 justify-center">
                   <span className="text-sm text-muted-foreground">Built by</span>

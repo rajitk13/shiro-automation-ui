@@ -80,6 +80,15 @@ export function MobileNav() {
                 ))}
                 <div className="my-2 border-t border-border/50" />
                 <a
+                  href="https://shiro-docs.rajit.cc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                >
+                  Docs ↗
+                </a>
+                <a
                   href="https://github.com/rajitk13/shiro-automation"
                   target="_blank"
                   rel="noopener noreferrer"

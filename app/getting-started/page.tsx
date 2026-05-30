@@ -16,6 +16,7 @@ const installSteps = [
 ];
 
 const nextSteps = [
+  { icon: "📚", title: "Full Documentation", desc: "In-depth guides, CLI reference, and API docs", href: "https://shiro-docs.rajit.cc", external: true },
   { icon: "🏗️", title: "Explore Architecture", desc: "Understand how Shiro orchestrates workflows", href: "/architecture" },
   { icon: "🧩", title: "Browse Modules", desc: "Discover community modules to extend functionality", href: "/modules" },
   { icon: "📋", title: "View Examples", desc: "Check out workflow examples for common use cases", href: "/examples" },
@@ -390,19 +391,35 @@ ai-review:
           <StaggerGroup className="grid md:grid-cols-2 gap-6">
             {nextSteps.map((item) => (
               <StaggerItem key={item.title}>
-                <Link href={item.href}>
-                  <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200 cursor-pointer">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <span className="text-3xl">{item.icon}</span>
-                        <div>
-                          <CardTitle className="text-lg">{item.title}</CardTitle>
-                          <CardDescription>{item.desc}</CardDescription>
+                {"external" in item && item.external ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer">
+                    <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200 cursor-pointer">
+                      <CardHeader>
+                        <div className="flex items-center gap-3">
+                          <span className="text-3xl">{item.icon}</span>
+                          <div>
+                            <CardTitle className="text-lg">{item.title} ↗</CardTitle>
+                            <CardDescription>{item.desc}</CardDescription>
+                          </div>
                         </div>
-                      </div>
-                    </CardHeader>
-                  </Card>
-                </Link>
+                      </CardHeader>
+                    </Card>
+                  </a>
+                ) : (
+                  <Link href={item.href}>
+                    <Card className="border-border/60 h-full hover:border-primary/40 transition-colors duration-200 cursor-pointer">
+                      <CardHeader>
+                        <div className="flex items-center gap-3">
+                          <span className="text-3xl">{item.icon}</span>
+                          <div>
+                            <CardTitle className="text-lg">{item.title}</CardTitle>
+                            <CardDescription>{item.desc}</CardDescription>
+                          </div>
+                        </div>
+                      </CardHeader>
+                    </Card>
+                  </Link>
+                )}
               </StaggerItem>
             ))}
           </StaggerGroup>
