@@ -45,7 +45,7 @@ export default function Home() {
         <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
 
             {/* Left: text */}
             <div>
@@ -107,7 +107,7 @@ export default function Home() {
 
       {/* Stats */}
       <FadeIn delay={0.1}>
-        <section className="py-12 px-6 border-y border-border/50 bg-muted/20">
+        <section className="py-12 px-4 sm:px-6 border-y border-border/50 bg-muted/20">
           <div className="container mx-auto max-w-4xl">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map(({ value, label }) => (
