@@ -146,47 +146,17 @@ export default function RootLayout({
           </nav>
           <main className="flex-1">{children}</main>
           <FloatingAIButton />
-          <footer className="border-t border-border/60 py-8 mt-16">
+          <footer className="border-t border-border/60 py-6 mt-16">
             <div className="container mx-auto px-4 sm:px-6">
-              <div className="flex flex-col gap-4 text-center md:flex-row md:justify-between md:items-center md:text-left">
-                <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 justify-center md:justify-start">
-                  <Logo size={24} />
-                  <span className="text-sm text-muted-foreground">© 2026 Shiro Automation · Apache 2.0</span>
-                  <a
-                    href="https://shiro-docs.rajit.cc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-primary hover:underline transition-colors whitespace-nowrap"
-                  >
-                    Documentation
-                  </a>
-                </div>
-                <div className="flex items-center gap-4 justify-center md:justify-end flex-wrap">
-                  <span className="text-sm text-muted-foreground">Built by</span>
-                  <a
-                    href="https://www.linkedin.com/in/rajitkuthiala/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-medium hover:text-primary transition-colors"
-                  >
-                    Rajit Kuthiala
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/rajitkuthiala/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    LinkedIn
-                  </a>
-                  <a
-                    href="https://github.com/rajitk13"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    GitHub
-                  </a>
+              <div className="flex flex-col gap-3 items-center text-center sm:flex-row sm:justify-between sm:text-left">
+                <p className="text-sm text-muted-foreground">
+                  Shiro Automation — Apache 2.0
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+                  <a href="https://shiro-docs.rajit.cc" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Docs</a>
+                  <a href="https://github.com/rajitk13/shiro-automation" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
+                  <a href="https://www.linkedin.com/in/rajitkuthiala/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a>
+                  <span>Built by Rajit Kuthiala</span>
                 </div>
               </div>
             </div>
