@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Logo } from "@/components/Logo";
-import { ChimeEffect } from "@/components/ChimeEffect";
 import { DynamicTheme } from "@/components/DynamicTheme";
 import { MobileNav } from "@/components/MobileNav";
 import { FloatingAIButton } from "@/components/FloatingAIButton";
@@ -90,7 +89,6 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider>
-          <ChimeEffect />
           <DynamicTheme />
           <nav className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl">
             <div className="container mx-auto px-6 py-3">
