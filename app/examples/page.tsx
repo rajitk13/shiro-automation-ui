@@ -498,6 +498,13 @@ test-jira:
     base_url: https://api.openai.com/v1
     api_key: "{"{env.OPENAI_API_KEY}"}"
 
+  # Gemini (Google AI Studio)
+  gemini:
+    type: gemini
+    model: gemini-1.5-pro
+    api_key: "{"{env.GEMINI_API_KEY}"}"
+    api_type: "google-ai-studio"
+
   # Custom OpenAI-compatible endpoint
   custom-llm:
     type: openai

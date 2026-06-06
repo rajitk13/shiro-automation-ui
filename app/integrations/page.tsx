@@ -8,7 +8,7 @@ import { FadeUp, StaggerGroup, StaggerItem } from "@/components/Animate";
 const integrations = [
   { icon: "🦊", title: "GitLab CI", badge: "Recommended", desc: "Native artifact state storage, human-in-loop approvals via manual jobs, and pipeline resumption." },
   { icon: "🐙", title: "GitHub Actions", badge: "Supported", desc: "Full integration for PR reviews, push notifications, and workflow automation." },
-  { icon: "🛠️", title: "Jenkins", badge: "Supported", desc: "Compatible as a build step or shell command in any Jenkinsfile pipeline." },
+  { icon: "🛠️", title: "Jenkins", badge: "Planned", desc: "Compatible as a build step or shell command in any Jenkinsfile pipeline." },
   { icon: "☁️", title: "Kubernetes Jobs", badge: "Supported", desc: "Run as K8s Jobs for cloud-native CI/CD with container isolation and horizontal scalability." },
   { icon: "🔀", title: "CircleCI", badge: "Planned", desc: "Full CircleCI integration with orb support and workflow orchestration." },
   { icon: "🔵", title: "Azure Pipelines", badge: "Planned", desc: "Azure DevOps integration for Azure-based CI/CD pipelines." },
@@ -20,6 +20,7 @@ const integrations = [
 const aiProviders = [
   { icon: "🧠", title: "Ollama", badge: "Local / Private", desc: "Run Llama, Mistral, and more on your own hardware. Full privacy, zero cloud dependency." },
   { icon: "✨", title: "OpenAI", badge: "GPT-4 / GPT-4o", desc: "Production-grade AI with enterprise reliability. GPT-4 and latest OpenAI models supported." },
+  { icon: "💎", title: "Gemini", badge: "Google AI", desc: "Google's Gemini models via Google AI Studio or Vertex AI integration." },
   { icon: "🔧", title: "Custom Endpoint", badge: "Bring your own", desc: "Any OpenAI-compatible API: vLLM, LM Studio, custom deployments — same config syntax." },
 ];
 

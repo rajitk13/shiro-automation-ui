@@ -24,7 +24,7 @@ const stats = [
 
 const integrations = [
   "GitLab", "GitHub", "Slack", "Jira", "Kubernetes", "Jenkins",
-  "OpenAI", "Ollama", "Custom APIs", "PagerDuty", "Linear", "Datadog",
+  "OpenAI", "Ollama", "Gemini", "Custom APIs", "PagerDuty", "Linear", "Datadog",
 ];
 
 const moduleCards = [
