@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
@@ -5,11 +7,13 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Badge } from "@/components/ui/badge";
 import { FadeUp, FadeIn, StaggerGroup, StaggerItem, GlowCard } from "@/components/Animate";
 import { TerminalAnimation } from "@/components/TerminalAnimation";
+import { Dialog } from "@/components/ui/dialog";
+import { useState } from "react";
 
 const features = [
-  { icon: "⚡", title: "CI-Native Execution", desc: "Runs as a Docker image inside GitLab CI or GitHub Actions. No new servers, no agents, no infra to manage." },
-  { icon: "🤖", title: "AI-Native Workflows", desc: "AI code review, release notes, incident summaries — powered by OpenAI, Ollama, or any custom endpoint." },
-  { icon: "🔒", title: "Human-in-Loop Approvals", desc: "Pause a workflow mid-pipeline, send a Slack notification, and resume on manual GitLab job trigger." },
+  { icon: "⚡", title: "Turn your CI runner into an AI workflow engine", desc: "Runs as a Docker image inside GitLab CI or GitHub Actions. No new servers, no agents, no infra to manage." },
+  { icon: "🤖", title: "AI reviews, approvals, and deployments running in your existing CI/CD", desc: "AI code review, release notes, incident summaries — powered by OpenAI, Ollama, or any custom endpoint." },
+  { icon: "🔒", title: "Need manager approval before production deploy? Add one step", desc: "Pause a workflow mid-pipeline, send a Slack notification, and resume on manual GitLab job trigger." },
   { icon: "📦", title: "Single Binary", desc: "One 10MB Go binary. No JVM, no runtime dependencies. Works inside any CI runner that has Docker." },
   { icon: "🧩", title: "Module System", desc: "Install Slack, Jira, git, AI modules with one command. Community modules on GitHub." },
   { icon: "💾", title: "State Persistence", desc: "Save workflow state to GitLab artifacts between pipeline stages. Resume exactly where you left off." },
@@ -37,6 +41,8 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const [isDemoOpen, setIsDemoOpen] = useState(false)
+
   return (
     <div className="flex flex-col w-full">
       {/* Hero */}
@@ -59,10 +65,10 @@ export default function Home() {
               </FadeIn>
               <FadeUp delay={0.15}>
                 <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
-                  <span className="gradient-text">Add AI</span>
+                  <span className="gradient-text">Replace deployment checklists</span>
                   <br />
                   <span className="text-foreground/80 text-2xl sm:text-4xl md:text-5xl font-semibold mt-2 block">
-                    to your CI pipeline
+                    with a single workflow
                   </span>
                 </h1>
               </FadeUp>
@@ -75,6 +81,9 @@ export default function Home() {
                 <div className="flex flex-wrap gap-4 mb-8">
                   <Button size="lg" className="px-8 h-12 text-base shadow-lg shadow-primary/25" asChild>
                     <Link href="/getting-started">Start automating →</Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="px-8 h-12 text-base" onClick={() => setIsDemoOpen(true)}>
+                    ▶ View Demo
                   </Button>
                   <Button size="lg" variant="outline" className="px-8 h-12 text-base" asChild>
                     <a href="https://github.com/rajitk13/shiro-automation" target="_blank" rel="noopener noreferrer">
@@ -166,9 +175,9 @@ export default function Home() {
           <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               { icon: "🏗️", title: "Platform Engineers", desc: "Build internal developer platforms with AI workflows that run in your existing CI." },
-              { icon: "🚀", title: "DevOps Teams", desc: "Automate deployments, approvals, and release notes without new infrastructure." },
+              { icon: "🚀", title: "DevOps Teams", desc: "Stop maintaining deployment checklists. Automate everything with workflows." },
               { icon: "🤖", title: "AI Engineering", desc: "Ship AI-powered workflows with governance and human-in-loop controls." },
-              { icon: "🔒", title: "Enterprise Teams", desc: "Self-hosted, audit-ready automation that runs inside your infrastructure." },
+              { icon: "🔒", title: "Enterprise Teams", desc: "Production deployment governance without another platform." },
             ].map(({ icon, title, desc }) => (
               <StaggerItem key={title}>
                 <Card className="border-border/60 bg-card/70 h-full">
@@ -368,6 +377,21 @@ export default function Home() {
           </div>
         </FadeUp>
       </section>
+
+      {/* Demo Dialog */}
+      <Dialog open={isDemoOpen} onOpenChange={setIsDemoOpen}>
+        <div className="aspect-video bg-black rounded-lg overflow-hidden">
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+            title="Shiro Demo"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </Dialog>
     </div>
   );
 }
