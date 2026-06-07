@@ -176,7 +176,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
-                  className="min-h-[200px] sm:min-h-[220px]"
+                  className="min-h-[280px] sm:min-h-[300px] md:min-h-[320px] lg:min-h-[340px]"
                 >
                   <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
                     <span className="gradient-text">{variation.headline}</span>
