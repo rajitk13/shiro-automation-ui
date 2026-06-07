@@ -15,10 +15,45 @@ import {
   StaggerGroup,
   StaggerItem,
   GlowCard,
+  AnimatePresence,
+  motion,
 } from "@/components/Animate"
 import { TerminalAnimation } from "@/components/TerminalAnimation"
 import { Dialog } from "@/components/ui/dialog"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
+const heroVariations = [
+  {
+    headline: "Replace Deployment Checklists",
+    subheadline: "With A Single Workflow",
+    description:
+      "Drop one Docker image into your pipeline. Get AI code review, deployment approvals, and Slack notifications — without new infrastructure or dedicated agents.",
+  },
+  {
+    headline: "Stop Running Deployment Scripts",
+    subheadline: "By Hand",
+    description:
+      "Automate your entire CI/CD pipeline with AI-powered workflows. Code review, approvals, and notifications — all in one Docker image.",
+  },
+  {
+    headline: "Turn Your CI Runner",
+    subheadline: "Into An AI Engine",
+    description:
+      "Add AI code review, human-in-loop approvals, and Slack notifications to GitLab CI or GitHub Actions. No new servers, no agents.",
+  },
+  {
+    headline: "Eliminate Manual Deployment",
+    subheadline: "Checklists Forever",
+    description:
+      "One Docker image. AI-powered code review, deployment approvals, and team notifications. Works in your existing CI pipeline.",
+  },
+  {
+    headline: "Ship Faster With AI",
+    subheadline: "Workflows In Your CI",
+    description:
+      "Automate code review, approvals, and Slack notifications without new infrastructure. Drop one Docker image into GitLab CI or GitHub Actions.",
+  },
+]
 
 const features = [
   {
@@ -96,6 +131,16 @@ const stats = [
 
 export default function Home() {
   const [isDemoOpen, setIsDemoOpen] = useState(false)
+  const [currentVariation, setCurrentVariation] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentVariation((prev) => (prev + 1) % heroVariations.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const variation = heroVariations[currentVariation]
 
   return (
     <div className="flex flex-col w-full">
@@ -105,51 +150,51 @@ export default function Home() {
         <div className="absolute top-1/3 left-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-primary/8 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-stretch">
             {/* Left: text */}
             <div>
               <FadeIn delay={0.05}>
                 <div className="mb-6 flex flex-wrap gap-1.5">
                   <Badge variant="secondary" className="text-xs">
-                    🦊 GitLab CI
+                    GitLab CI
                   </Badge>
                   <Badge variant="secondary" className="text-xs">
-                    🐙 GitHub Actions
+                    GitHub Actions
                   </Badge>
                   <Badge variant="secondary" className="text-xs">
                     Jenkins
                   </Badge>
                   <Badge variant="secondary" className="text-xs">
-                    any runner
+                    Any Runner
                   </Badge>
                 </div>
               </FadeIn>
-              <FadeUp delay={0.15}>
-                <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
-                  <span className="gradient-text">
-                    Replace deployment checklists
-                  </span>
-                  <br />
-                  <span className="text-foreground/80 text-2xl sm:text-4xl md:text-5xl font-semibold mt-2 block">
-                    with a single workflow
-                  </span>
-                </h1>
-              </FadeUp>
-              <FadeUp delay={0.25}>
-                <p className="text-base sm:text-lg text-muted-foreground mb-10 leading-relaxed">
-                  Drop one Docker image into your pipeline. Get{" "}
-                  <strong className="text-foreground">
-                    AI code review, deployment approvals, and Slack
-                    notifications
-                  </strong>{" "}
-                  — without new infrastructure or dedicated agents.
-                </p>
-              </FadeUp>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentVariation}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="min-h-[200px] sm:min-h-[220px]"
+                >
+                  <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
+                    <span className="gradient-text">{variation.headline}</span>
+                    <br />
+                    <span className="text-foreground/80 text-2xl sm:text-4xl md:text-5xl font-semibold mt-2 block">
+                      {variation.subheadline}
+                    </span>
+                  </h1>
+                  <p className="text-base sm:text-lg text-muted-foreground mb-10 leading-relaxed">
+                    {variation.description}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
               <FadeUp delay={0.35}>
-                <div className="flex flex-wrap gap-4 mb-8">
+                <div className="flex flex-col sm:flex-wrap gap-4 mb-8">
                   <Button
                     size="lg"
-                    className="px-8 h-12 text-base shadow-lg shadow-primary/25"
+                    className="w-full sm:w-auto px-8 h-12 text-base shadow-lg shadow-primary/25"
                     asChild
                   >
                     <Link href="/getting-started">Start automating →</Link>
@@ -157,7 +202,7 @@ export default function Home() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="px-8 h-12 text-base"
+                    className="w-full sm:w-auto px-8 h-12 text-base"
                     disabled
                   >
                     ▶ View Demo
@@ -165,7 +210,7 @@ export default function Home() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="px-8 h-12 text-base"
+                    className="w-full sm:w-auto px-8 h-12 text-base"
                     asChild
                   >
                     <a
@@ -179,26 +224,26 @@ export default function Home() {
                 </div>
               </FadeUp>
               <FadeUp delay={0.42}>
-                <div className="rounded-lg border border-border/60 bg-zinc-950 dark:bg-zinc-900 font-mono text-xs dark:text-white text-black">
-                  <div className="px-3 py-1.5 bg-zinc-800/60 dark:bg-zinc-800/60 text-zinc-400 dark:text-zinc-400 text-[10px] border-b border-white/5 dark:border-white/5">
+                <div className="rounded-lg border border-border/60 bg-zinc-100 dark:bg-zinc-900 font-mono text-xs text-zinc-800 dark:text-white">
+                  <div className="px-3 py-1.5 bg-zinc-200 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-400 text-[10px] border-b border-zinc-300 dark:border-white/5">
                     .gitlab-ci.yml
                   </div>
                   <div className="p-3 space-y-0.5">
-                    <div className="text-sky-400 dark:text-sky-400">
+                    <div className="text-sky-600 dark:text-sky-400">
                       ai-review:
                     </div>
-                    <div className="text-zinc-300 dark:text-zinc-300 break-all">
+                    <div className="text-zinc-700 dark:text-zinc-300 break-all">
                       &nbsp;&nbsp;image:{" "}
-                      <span className="text-emerald-400 dark:text-emerald-400">
+                      <span className="text-emerald-600 dark:text-emerald-400">
                         ghcr.io/rajitk13/shiro-automation:latest
                       </span>
                     </div>
-                    <div className="text-zinc-300 dark:text-zinc-300">
+                    <div className="text-zinc-700 dark:text-zinc-300">
                       &nbsp;&nbsp;script:
                     </div>
-                    <div className="text-zinc-300 dark:text-zinc-300 break-all">
+                    <div className="text-zinc-700 dark:text-zinc-300 break-all">
                       &nbsp;&nbsp;&nbsp;&nbsp;-{" "}
-                      <span className="text-amber-300 dark:text-amber-300">
+                      <span className="text-amber-600 dark:text-amber-300">
                         shiro run -workflow .shiro/workflows/code-review.json
                       </span>
                     </div>
@@ -447,9 +492,9 @@ export default function Home() {
 
             <FadeUp delay={0.2}>
               <div className="space-y-4">
-                <div className="rounded-xl border border-border/60 bg-zinc-950 dark:bg-zinc-900 overflow-hidden shadow-2xl max-w-full dark:text-white text-black">
-                  <div className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/60 dark:bg-zinc-800/60 border-b border-white/5 dark:border-white/5">
-                    <span className="text-[10px] text-zinc-400 dark:text-zinc-400 font-mono">
+                <div className="rounded-xl border border-border/60 bg-zinc-100 dark:bg-zinc-900 overflow-hidden shadow-2xl max-w-full text-zinc-800 dark:text-white">
+                  <div className="flex items-center gap-2 px-4 py-2.5 bg-zinc-200 dark:bg-zinc-800/60 border-b border-zinc-300 dark:border-white/5">
+                    <span className="text-[10px] text-zinc-600 dark:text-zinc-400 font-mono">
                       🦊 .gitlab-ci.yml
                     </span>
                   </div>
@@ -463,9 +508,9 @@ export default function Home() {
   only:
     - merge_requests`}</pre>
                 </div>
-                <div className="rounded-xl border border-border/60 bg-zinc-950 dark:bg-zinc-900 overflow-hidden shadow-xl max-w-full dark:text-white text-black">
-                  <div className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/60 dark:bg-zinc-800/60 border-b border-white/5 dark:border-white/5">
-                    <span className="text-[10px] text-zinc-400 dark:text-zinc-400 font-mono">
+                <div className="rounded-xl border border-border/60 bg-zinc-100 dark:bg-zinc-900 overflow-hidden shadow-xl max-w-full text-zinc-800 dark:text-white">
+                  <div className="flex items-center gap-2 px-4 py-2.5 bg-zinc-200 dark:bg-zinc-800/60 border-b border-zinc-300 dark:border-white/5">
+                    <span className="text-[10px] text-zinc-600 dark:text-zinc-400 font-mono">
                       🐙 .github/workflows/review.yml
                     </span>
                   </div>

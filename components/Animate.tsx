@@ -1,61 +1,90 @@
-"use client";
+"use client"
 
-import { motion, Variants } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion"
 
-const fadeUp: Variants = {
+export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-};
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+}
 
-const fadeIn: Variants = {
+export const fadeIn: Variants = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { duration: 0.5 } },
-};
+  exit: { opacity: 0, transition: { duration: 0.3 } },
+}
 
 const stagger: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
-};
+}
 
-export function FadeUp({ children, delay = 0, className }: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
+export function FadeUp({
+  children,
+  delay = 0,
+  className,
+}: {
+  children: React.ReactNode
+  delay?: number
+  className?: string
 }) {
   return (
     <motion.div
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-60px" }}
-      variants={{ ...fadeUp, show: { ...fadeUp.show as object, transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] } } }}
+      variants={{
+        ...fadeUp,
+        show: {
+          ...(fadeUp.show as object),
+          transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
+        },
+      }}
       className={className}
     >
       {children}
     </motion.div>
-  );
+  )
 }
 
-export function FadeIn({ children, delay = 0, className }: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
+export function FadeIn({
+  children,
+  delay = 0,
+  className,
+}: {
+  children: React.ReactNode
+  delay?: number
+  className?: string
 }) {
   return (
     <motion.div
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      variants={{ ...fadeIn, show: { ...fadeIn.show as object, transition: { duration: 0.5, delay } } }}
+      variants={{
+        ...fadeIn,
+        show: {
+          ...(fadeIn.show as object),
+          transition: { duration: 0.5, delay },
+        },
+      }}
       className={className}
     >
       {children}
     </motion.div>
-  );
+  )
 }
 
-export function StaggerGroup({ children, className }: {
-  children: React.ReactNode;
-  className?: string;
+export function StaggerGroup({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
 }) {
   return (
     <motion.div
@@ -67,23 +96,29 @@ export function StaggerGroup({ children, className }: {
     >
       {children}
     </motion.div>
-  );
+  )
 }
 
-export function StaggerItem({ children, className }: {
-  children: React.ReactNode;
-  className?: string;
+export function StaggerItem({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
 }) {
   return (
     <motion.div variants={fadeUp} className={className}>
       {children}
     </motion.div>
-  );
+  )
 }
 
-export function GlowCard({ children, className }: {
-  children: React.ReactNode;
-  className?: string;
+export function GlowCard({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
 }) {
   return (
     <motion.div
@@ -93,7 +128,7 @@ export function GlowCard({ children, className }: {
     >
       {children}
     </motion.div>
-  );
+  )
 }
 
-export { motion };
+export { motion, AnimatePresence }
