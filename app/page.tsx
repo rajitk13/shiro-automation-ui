@@ -300,10 +300,10 @@ export default function Home() {
             </div>
           </FadeUp>
 
-          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
             {features.map(({ icon, title, desc }) => (
-              <StaggerItem key={title}>
-                <GlowCard>
+              <StaggerItem key={title} className="h-full">
+                <GlowCard className="h-full">
                   <Card className="glow-card h-full border-border/60 bg-card/70 glass-card flex flex-col">
                     <CardHeader className="flex-1">
                       <div className="text-3xl mb-3">{icon}</div>
