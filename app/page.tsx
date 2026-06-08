@@ -304,8 +304,8 @@ export default function Home() {
             {features.map(({ icon, title, desc }) => (
               <StaggerItem key={title}>
                 <GlowCard>
-                  <Card className="glow-card h-full border-border/60 bg-card/70 glass-card">
-                    <CardHeader>
+                  <Card className="glow-card h-full border-border/60 bg-card/70 glass-card flex flex-col">
+                    <CardHeader className="flex-1">
                       <div className="text-3xl mb-3">{icon}</div>
                       <CardTitle className="text-lg">{title}</CardTitle>
                       <CardDescription className="text-sm leading-relaxed">
