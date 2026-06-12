@@ -203,9 +203,13 @@ export default function Home() {
                     size="lg"
                     variant="outline"
                     className="w-full sm:w-auto px-8 h-12 text-base"
-                    disabled
                   >
-                    ▶ View Demo
+                    <a
+                      href="https://youtu.be/VNsUqGyw6kA?si=WepvOcT6fVX7YgGS"
+                      target="_blank"
+                    >
+                      ▶ View Demo
+                    </a>
                   </Button>
                   <Button
                     size="lg"
